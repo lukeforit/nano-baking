@@ -1,4 +1,4 @@
-package com.rabbit.green.baking.app.dummy;
+package com.rabbit.green.baking.app.data.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;

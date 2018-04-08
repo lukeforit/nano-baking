@@ -1,4 +1,4 @@
-package com.rabbit.green.baking.app;
+package com.rabbit.green.baking.app.recipes.details;
 
 import android.app.Activity;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.rabbit.green.baking.app.dummy.DummyContent;
+import com.rabbit.green.baking.app.R;
+import com.rabbit.green.baking.app.data.model.DummyContent;
+import com.rabbit.green.baking.app.recipes.steps.ItemListActivity;
 
 /**
  * A fragment representing a single Item detail screen.

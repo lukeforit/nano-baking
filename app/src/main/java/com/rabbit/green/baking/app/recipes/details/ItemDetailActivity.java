@@ -1,4 +1,4 @@
-package com.rabbit.green.baking.app;
+package com.rabbit.green.baking.app.recipes.details;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
+
+import com.rabbit.green.baking.app.R;
+import com.rabbit.green.baking.app.recipes.steps.ItemListActivity;
 
 /**
  * An activity representing a single Item detail screen. This

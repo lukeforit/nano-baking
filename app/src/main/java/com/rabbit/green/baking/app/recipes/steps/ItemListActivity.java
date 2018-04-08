@@ -1,4 +1,4 @@
-package com.rabbit.green.baking.app;
+package com.rabbit.green.baking.app.recipes.steps;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +15,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
-import com.rabbit.green.baking.app.dummy.DummyContent;
+import com.rabbit.green.baking.app.recipes.details.ItemDetailActivity;
+import com.rabbit.green.baking.app.recipes.details.ItemDetailFragment;
+import com.rabbit.green.baking.app.R;
+import com.rabbit.green.baking.app.data.model.DummyContent;
 
 import java.util.List;
 
