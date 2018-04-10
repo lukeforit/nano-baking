@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".recipes.selection.SelectRecipeActivity">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</android.support.constraint.ConstraintLayout>
+    <data>
+
+        <variable
+            name="vm"
+            type="com.rabbit.green.baking.app.recipes.selection.SelectRecipeViewModel" />
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".recipes.selection.SelectRecipeActivity">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recipes_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:adapter="@{vm.adapter}"
+            app:layoutManager="@{vm.layoutManager}"/>
+    </FrameLayout>
+</layout>

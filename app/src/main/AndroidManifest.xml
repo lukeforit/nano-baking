@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rabbit.green.baking.app">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".common.BakingApp"
         android:allowBackup="true"
@@ -14,11 +16,6 @@
             android:name=".recipes.steps.ItemListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".recipes.details.ItemDetailActivity"
@@ -29,8 +26,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rabbit.green.baking.app.recipes.steps.ItemListActivity" />
         </activity>
-        <activity android:name=".recipes.selection.SelectRecipeActivity">
-
+        <activity
+            android:name=".recipes.selection.SelectRecipeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

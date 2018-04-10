@@ -12,12 +12,14 @@ import com.rabbit.green.baking.app.data.model.Recipe;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeViewHolder> {
 
     private List<Recipe> data;
 
-    public RecipeAdapter(List<Recipe> data) {
-        this.data = data;
+    @Inject
+    public RecipeAdapter() {
     }
 
     @NonNull
@@ -34,8 +36,13 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeViewHolder> {
         holder.bind(data.get(position));
     }
 
+    public void setData(List<Recipe> data) {
+        this.data = data;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
-        return data.size();
+        return data == null ? 0 : data.size();
     }
 }
