@@ -10,8 +10,11 @@ import javax.inject.Inject;
 
 public class NetDataSource implements IDataSource {
 
-    @Inject
-    IDataRestService restService;
+    private IDataRestService restService;
+
+    public NetDataSource(IDataRestService restService) {
+        this.restService = restService;
+    }
 
     @Override
     public List<Recipe> getRecipes() {

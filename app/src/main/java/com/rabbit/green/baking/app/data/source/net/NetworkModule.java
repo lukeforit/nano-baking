@@ -1,5 +1,7 @@
 package com.rabbit.green.baking.app.data.source.net;
 
+import com.rabbit.green.baking.app.data.source.IDataSource;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -23,5 +25,11 @@ public class NetworkModule {
     @Provides
     public IDataRestService provideDataRestService(Retrofit retrofit) {
         return retrofit.create(IDataRestService.class);
+    }
+
+    @Singleton
+    @Provides
+    public IDataSource provideDataSource(IDataRestService service) {
+        return new NetDataSource(service);
     }
 }
