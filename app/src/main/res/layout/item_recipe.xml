@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,15 +10,48 @@
             type="com.rabbit.green.baking.app.data.model.Recipe" />
     </data>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/recipe_bg_iv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:imageUrl="@{recipe.image}"
+            android:adjustViewBounds="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/recipe_background" />
+
         <TextView
+            android:id="@+id/recipe_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/white_alpha"
+            android:textSize="24sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:padding="50dp"
             android:text="@{recipe.name}"
+            app:layout_constraintBottom_toBottomOf="@+id/recipe_bg_iv"
+            app:layout_constraintEnd_toEndOf="@+id/recipe_bg_iv"
+            app:layout_constraintStart_toStartOf="@+id/recipe_bg_iv"
+            app:layout_constraintTop_toTopOf="@+id/recipe_bg_iv"
             tools:text="Recipe name" />
-    </FrameLayout>
+
+        <TextView
+            android:id="@+id/credits_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Food image created by Freepik"
+            android:textColor="@android:color/white"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 </layout>
