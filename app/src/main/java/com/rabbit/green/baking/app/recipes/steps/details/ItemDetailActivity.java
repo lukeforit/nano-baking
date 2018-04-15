@@ -1,4 +1,4 @@
-package com.rabbit.green.baking.app.recipes.details;
+package com.rabbit.green.baking.app.recipes.steps.details;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,13 +11,13 @@ import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import com.rabbit.green.baking.app.R;
-import com.rabbit.green.baking.app.recipes.steps.ItemListActivity;
+import com.rabbit.green.baking.app.recipes.steps.StepsActivity;
 
 /**
  * An activity representing a single Item detail screen. This
  * activity is only used on narrow width devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
- * in a {@link ItemListActivity}.
+ * in a {@link StepsActivity}.
  */
 public class ItemDetailActivity extends AppCompatActivity {
 
@@ -76,7 +76,7 @@ public class ItemDetailActivity extends AppCompatActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            navigateUpTo(new Intent(this, ItemListActivity.class));
+            navigateUpTo(new Intent(this, StepsActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

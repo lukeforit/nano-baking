@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.rabbit.green.baking.app.data.model.Recipe" />
+            type="com.rabbit.green.baking.app.data.model.Step" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -18,7 +18,7 @@
             android:id="@+id/step_thumbnail_iv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:imageUrl="@{item.image}"
+            app:imageUrl="@{item.thumbnailURL}"
             android:adjustViewBounds="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
             android:textStyle="bold"
             android:fontFamily="sans-serif"
             android:padding="50dp"
-            android:text="@{item.name}"
+            android:text="@{item.shortDescription}"
             app:layout_constraintBottom_toBottomOf="@+id/step_thumbnail_iv"
             app:layout_constraintEnd_toEndOf="@+id/step_thumbnail_iv"
             app:layout_constraintStart_toStartOf="@+id/step_thumbnail_iv"

@@ -13,18 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".recipes.steps.ItemListActivity"
+            android:name=".recipes.steps.StepsActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".recipes.details.ItemDetailActivity"
+            android:name=".recipes.steps.details.ItemDetailActivity"
             android:label="@string/title_item_detail"
-            android:parentActivityName=".recipes.steps.ItemListActivity"
+            android:parentActivityName=".recipes.steps.StepsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.rabbit.green.baking.app.recipes.steps.ItemListActivity" />
+                android:value="com.rabbit.green.baking.app.recipes.steps.StepsActivity" />
         </activity>
         <activity
             android:name=".recipes.selection.SelectRecipeActivity"

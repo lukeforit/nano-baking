@@ -9,7 +9,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context="com.rabbit.green.baking.app.recipes.steps.ItemListActivity">
+    tools:context="com.rabbit.green.baking.app.recipes.steps.StepsActivity">
 
     <!--
     This layout is a two-pane layout for the Items
@@ -26,8 +26,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        tools:context="com.rabbit.green.baking.app.recipes.steps.ItemListActivity"
-        tools:listitem="@layout/item_list_content" />
+        tools:context="com.rabbit.green.baking.app.recipes.steps.StepsActivity"
+        tools:listitem="@layout/item_step" />
 
     <FrameLayout
         android:id="@+id/item_detail_container"
