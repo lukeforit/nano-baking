@@ -1,7 +1,5 @@
 package com.rabbit.green.baking.app.recipes.steps;
 
-import android.content.Context;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
@@ -10,20 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 
 import com.rabbit.green.baking.app.BR;
 import com.rabbit.green.baking.app.recipes.BaseActivity;
-import com.rabbit.green.baking.app.recipes.steps.details.ItemDetailActivity;
-import com.rabbit.green.baking.app.recipes.steps.details.ItemDetailFragment;
+import com.rabbit.green.baking.app.recipes.steps.details.StepDetailActivity;
 import com.rabbit.green.baking.app.R;
-import com.rabbit.green.baking.app.data.model.DummyContent;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -31,7 +22,7 @@ import javax.inject.Inject;
  * An activity representing a list of Items. This activity
  * has different presentations for handset and tablet-size devices. On
  * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link ItemDetailActivity} representing
+ * lead to a {@link StepDetailActivity} representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
@@ -100,16 +91,16 @@ public class StepsActivity extends BaseActivity {
 //                DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
 //                if (mTwoPane) {
 //                    Bundle arguments = new Bundle();
-//                    arguments.putString(ItemDetailFragment.ARG_ITEM_ID, item.id);
-//                    ItemDetailFragment fragment = new ItemDetailFragment();
+//                    arguments.putString(StepDetailFragment.ARG_ITEM_ID, item.id);
+//                    StepDetailFragment fragment = new StepDetailFragment();
 //                    fragment.setArguments(arguments);
 //                    mParentActivity.getSupportFragmentManager().beginTransaction()
 //                            .replace(R.id.item_detail_container, fragment)
 //                            .commit();
 //                } else {
 //                    Context context = view.getContext();
-//                    Intent intent = new Intent(context, ItemDetailActivity.class);
-//                    intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id);
+//                    Intent intent = new Intent(context, StepDetailActivity.class);
+//                    intent.putExtra(StepDetailFragment.ARG_ITEM_ID, item.id);
 //
 //                    context.startActivity(intent);
 //                }

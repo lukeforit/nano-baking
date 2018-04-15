@@ -11,15 +11,16 @@ import android.widget.TextView;
 
 import com.rabbit.green.baking.app.R;
 import com.rabbit.green.baking.app.data.model.DummyContent;
+import com.rabbit.green.baking.app.recipes.BaseFragment;
 import com.rabbit.green.baking.app.recipes.steps.StepsActivity;
 
 /**
  * A fragment representing a single Item detail screen.
  * This fragment is either contained in a {@link StepsActivity}
- * in two-pane mode (on tablets) or a {@link ItemDetailActivity}
+ * in two-pane mode (on tablets) or a {@link StepDetailActivity}
  * on handsets.
  */
-public class ItemDetailFragment extends Fragment {
+public class StepDetailFragment extends BaseFragment {
     /**
      * The fragment argument representing the item ID that this fragment
      * represents.
@@ -35,7 +36,7 @@ public class ItemDetailFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ItemDetailFragment() {
+    public StepDetailFragment() {
     }
 
     @Override
@@ -59,7 +60,7 @@ public class ItemDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.item_detail, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_step_detail, container, false);
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
