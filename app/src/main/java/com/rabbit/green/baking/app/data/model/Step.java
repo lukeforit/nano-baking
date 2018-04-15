@@ -1,5 +1,8 @@
 package com.rabbit.green.baking.app.data.model;
 
+import org.parceler.Parcel;
+
+@Parcel(Parcel.Serialization.BEAN)
 public class Step {
     private int id;
     private String shortDescription;

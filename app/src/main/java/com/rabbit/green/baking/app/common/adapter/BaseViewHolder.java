@@ -1,27 +1,25 @@
-package com.rabbit.green.baking.app.recipes.selection.adapter;
+package com.rabbit.green.baking.app.common.adapter;
 
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.rabbit.green.baking.app.BR;
-import com.rabbit.green.baking.app.data.model.Recipe;
 
-class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
+public class BaseViewHolder<T> extends RecyclerView.ViewHolder implements View.OnClickListener {
     private ViewDataBinding binding;
 
     private OnViewHolderClickListener onViewHolderClickListener;
 
-    RecipeViewHolder(ViewDataBinding binding, OnViewHolderClickListener listener) {
+    BaseViewHolder(ViewDataBinding binding, OnViewHolderClickListener listener) {
         super(binding.getRoot());
         this.binding = binding;
         this.binding.getRoot().setOnClickListener(this);
         onViewHolderClickListener = listener;
     }
 
-    void bind(Recipe recipe) {
-        binding.setVariable(BR.recipe, recipe);
+    void bind(T item) {
+        binding.setVariable(BR.item, item);
         binding.executePendingBindings();
     }
 

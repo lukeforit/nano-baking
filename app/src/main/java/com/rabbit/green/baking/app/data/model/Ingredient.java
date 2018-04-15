@@ -1,5 +1,8 @@
 package com.rabbit.green.baking.app.data.model;
 
+import org.parceler.Parcel;
+
+@Parcel(Parcel.Serialization.BEAN)
 public class Ingredient {
     private double quantity;
     private String measure;

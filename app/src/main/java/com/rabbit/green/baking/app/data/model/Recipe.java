@@ -1,7 +1,10 @@
 package com.rabbit.green.baking.app.data.model;
 
+import org.parceler.Parcel;
+
 import java.util.List;
 
+@Parcel(Parcel.Serialization.BEAN)
 public class Recipe {
     private int id;
     private String name;
