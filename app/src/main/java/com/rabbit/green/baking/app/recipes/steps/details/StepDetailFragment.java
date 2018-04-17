@@ -17,12 +17,6 @@ import org.parceler.Parcels;
 
 import javax.inject.Inject;
 
-/**
- * A fragment representing a single Item detail screen.
- * This fragment is either contained in a {@link StepsActivity}
- * in two-pane mode (on tablets) or a {@link StepDetailActivity}
- * on handsets.
- */
 public class StepDetailFragment extends BaseFragment {
 
     public static final String ARG_STEP = "step";
@@ -31,10 +25,6 @@ public class StepDetailFragment extends BaseFragment {
     @Inject
     StepDetailsViewModel viewModel;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
     public StepDetailFragment() {
     }
 
