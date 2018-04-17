@@ -1,150 +1,67 @@
 package com.rabbit.green.baking.app.recipes.steps;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
-
 
 import com.rabbit.green.baking.app.BR;
-import com.rabbit.green.baking.app.recipes.BaseActivity;
-import com.rabbit.green.baking.app.recipes.steps.details.StepDetailActivity;
 import com.rabbit.green.baking.app.R;
+import com.rabbit.green.baking.app.data.model.Recipe;
+import com.rabbit.green.baking.app.data.model.Step;
+import com.rabbit.green.baking.app.databinding.ActivityStepsBinding;
+import com.rabbit.green.baking.app.recipes.BaseActivity;
+import com.rabbit.green.baking.app.recipes.steps.details.StepDetailFragment;
+
+import org.parceler.Parcels;
 
 import javax.inject.Inject;
 
-/**
- * An activity representing a list of Items. This activity
- * has different presentations for handset and tablet-size devices. On
- * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link StepDetailActivity} representing
- * item details. On tablets, the activity presents the list of items and
- * item details side-by-side using two vertical panes.
- */
 public class StepsActivity extends BaseActivity {
 
     public static final String BUNDLE_KEY_RECIPE = "BUNDLE_KEY_RECIPE";
 
-    /**
-     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
-     */
-    private boolean mTwoPane;
-
     @Inject
     StepsViewModel viewModel;
+
+    private StepDetailFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ViewDataBinding binding =
+        ActivityStepsBinding binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_steps);
         binding.setVariable(BR.vm, viewModel);
         binding.executePendingBindings();
-        viewModel.setup();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle(getTitle());
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        if (findViewById(R.id.item_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-w900dp).
-            // If this view is present, then the
-            // activity should be in two-pane mode.
-            mTwoPane = true;
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra(BUNDLE_KEY_RECIPE)) {
+            viewModel.setup(Parcels.<Recipe>unwrap(intent.getParcelableExtra(BUNDLE_KEY_RECIPE)));
         }
 
-        View recyclerView = findViewById(R.id.item_list);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        if (binding.stepDetailContent != null) {
+            if (savedInstanceState == null) {
+                fragment = new StepDetailFragment();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(
+                        StepDetailFragment.ARG_STEP, Parcels.wrap(viewModel.getStep(0)));
+                fragment.setArguments(bundle);
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.step_detail_content, fragment, StepDetailFragment.TAG)
+                        .commit();
+            } else {
+                fragment = (StepDetailFragment) getSupportFragmentManager().findFragmentByTag(StepDetailFragment.TAG);
+            }
+
+            viewModel.setMasterDetailMode(true);
+        } else {
+            viewModel.setMasterDetailMode(false);
+        }
+
     }
 
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-//        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, mTwoPane));
+    void updateStepDetailFragment(Step step) {
+        fragment.setData(step);
     }
-
-//    public static class SimpleItemRecyclerViewAdapter
-//            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
-//
-//        private final StepsActivity mParentActivity;
-//        private final List<DummyContent.DummyItem> mValues;
-//        private final boolean mTwoPane;
-//        private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
-//                if (mTwoPane) {
-//                    Bundle arguments = new Bundle();
-//                    arguments.putString(StepDetailFragment.ARG_ITEM_ID, item.id);
-//                    StepDetailFragment fragment = new StepDetailFragment();
-//                    fragment.setArguments(arguments);
-//                    mParentActivity.getSupportFragmentManager().beginTransaction()
-//                            .replace(R.id.item_detail_container, fragment)
-//                            .commit();
-//                } else {
-//                    Context context = view.getContext();
-//                    Intent intent = new Intent(context, StepDetailActivity.class);
-//                    intent.putExtra(StepDetailFragment.ARG_ITEM_ID, item.id);
-//
-//                    context.startActivity(intent);
-//                }
-//            }
-//        };
-//
-//        SimpleItemRecyclerViewAdapter(StepsActivity parent,
-//                                      List<DummyContent.DummyItem> items,
-//                                      boolean twoPane) {
-//            mValues = items;
-//            mParentActivity = parent;
-//            mTwoPane = twoPane;
-//        }
-//
-//        @Override
-//        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//            View view = LayoutInflater.from(parent.getContext())
-//                    .inflate(R.layout.item_step, parent, false);
-//            return new ViewHolder(view);
-//        }
-//
-//        @Override
-//        public void onBindViewHolder(final ViewHolder holder, int position) {
-//            holder.mIdView.setText(mValues.get(position).id);
-//            holder.mContentView.setText(mValues.get(position).content);
-//
-//            holder.itemView.setTag(mValues.get(position));
-//            holder.itemView.setOnClickListener(mOnClickListener);
-//        }
-//
-//        @Override
-//        public int getItemCount() {
-//            return mValues.size();
-//        }
-//
-//        class ViewHolder extends RecyclerView.ViewHolder {
-//            final TextView mIdView;
-//            final TextView mContentView;
-//
-//            ViewHolder(View view) {
-//                super(view);
-//                mIdView = (TextView) view.findViewById(R.id.id_text);
-//                mContentView = (TextView) view.findViewById(R.id.content);
-//            }
-//        }
-//    }
 }

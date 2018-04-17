@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import com.rabbit.green.baking.app.R;
+import com.rabbit.green.baking.app.recipes.BaseActivity;
 import com.rabbit.green.baking.app.recipes.steps.StepsActivity;
 
 /**
@@ -19,7 +20,9 @@ import com.rabbit.green.baking.app.recipes.steps.StepsActivity;
  * item details are presented side-by-side with a list of items
  * in a {@link StepsActivity}.
  */
-public class StepDetailActivity extends AppCompatActivity {
+public class StepDetailActivity extends BaseActivity {
+
+    public static final String BUNDLE_KEY_STEP = "BUNDLE_KEY_STEP";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +59,8 @@ public class StepDetailActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(StepDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(StepDetailFragment.ARG_ITEM_ID));
+            arguments.putString(StepDetailFragment.ARG_STEP,
+                    getIntent().getStringExtra(StepDetailFragment.ARG_STEP));
             StepDetailFragment fragment = new StepDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
