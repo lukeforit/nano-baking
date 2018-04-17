@@ -1,11 +1,15 @@
 package com.rabbit.green.baking.app.recipes.steps.details;
 
+import com.google.android.exoplayer2.ExoPlayer;
 import com.rabbit.green.baking.app.data.model.Step;
 import com.rabbit.green.baking.app.recipes.BaseViewModel;
 
 import javax.inject.Inject;
 
 public class StepDetailsViewModel extends BaseViewModel {
+
+    @Inject
+    ExoPlayer exoPlayer;
 
     private Step step;
 
