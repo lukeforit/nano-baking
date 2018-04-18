@@ -7,13 +7,13 @@ import android.support.v7.widget.RecyclerView;
 import com.rabbit.green.baking.app.data.model.Recipe;
 import com.rabbit.green.baking.app.data.model.Step;
 import com.rabbit.green.baking.app.recipes.BaseViewModel;
-import com.rabbit.green.baking.app.recipes.steps.details.StepDetailActivity;
+import com.rabbit.green.baking.app.recipes.steps.details.SingleStepActivity;
 
 import org.parceler.Parcels;
 
 import javax.inject.Inject;
 
-import static com.rabbit.green.baking.app.recipes.steps.details.StepDetailActivity.BUNDLE_KEY_STEP;
+import static com.rabbit.green.baking.app.recipes.steps.details.SingleStepActivity.BUNDLE_KEY_STEP;
 
 public class StepsViewModel extends BaseViewModel {
 
@@ -67,7 +67,7 @@ public class StepsViewModel extends BaseViewModel {
     }
 
     private void navigateToDetailsActivity(int detailId) {
-        Intent intent = new Intent(activity, StepDetailActivity.class);
+        Intent intent = new Intent(activity, SingleStepActivity.class);
         intent.putExtra(BUNDLE_KEY_STEP, Parcels.wrap(recipe.getSteps().get(detailId)));
         activity.startActivity(intent);
     }
