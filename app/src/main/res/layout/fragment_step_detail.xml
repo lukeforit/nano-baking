@@ -12,7 +12,11 @@
     <ScrollView
         android:id="@+id/content_sv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/size_small"
+        android:paddingEnd="@dimen/size_small"
+        android:paddingTop="@dimen/size_small"
+        android:fillViewport="true">
 
         <LinearLayout
             android:orientation="vertical"
@@ -21,37 +25,25 @@
             tools:context=".recipes.steps.details.StepDetailFragment">
 
             <com.google.android.exoplayer2.ui.PlayerView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:id="@+id/thumbnail_iv"
+                android:id="@+id/player_pv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                app:imageUrl="@{vm.thumbnailUrl}"
-                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="@{vm.playerVisibility}"
+                app:resize_mode="fixed_width"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/recipe_background" />
-
-            <TextView
-                android:id="@+id/step_id_tv"
-                style="?android:attr/textAppearanceLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{vm.id}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/thumbnail_iv"
-                tools:text="#1" />
+                app:player="@{vm.exoPlayer}" />
 
             <TextView
                 android:id="@+id/step_description_tv"
                 style="?android:attr/textAppearanceLarge"
-                android:layout_width="wrap_content"
+                android:padding="@dimen/size_medium"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:text="@{vm.description}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/step_id_tv"
+                app:layout_constraintTop_toBottomOf="@+id/player_pv"
+                app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="@tools:sample/lorem/random" />
 
         </LinearLayout>

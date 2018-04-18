@@ -12,7 +12,8 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/size_small">
 
         <ImageView
             android:id="@+id/step_thumbnail_iv"
@@ -27,14 +28,15 @@
 
         <TextView
             android:id="@+id/step_desc_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white_alpha"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textColor="@android:color/black"
             android:textStyle="bold"
             android:fontFamily="sans-serif"
-            android:padding="50dp"
+            android:padding="@dimen/size_medium"
+            android:textAlignment="center"
             android:text="@{item.shortDescription}"
             app:layout_constraintBottom_toBottomOf="@+id/step_thumbnail_iv"
             app:layout_constraintEnd_toEndOf="@+id/step_thumbnail_iv"

@@ -46,6 +46,18 @@ public class StepDetailFragment extends BaseFragment {
         return binding.getRoot();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        viewModel.preparePlayer();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        viewModel.releasePlayer();
+    }
+
     public void setData(Step step) {
         viewModel.setData(step);
     }

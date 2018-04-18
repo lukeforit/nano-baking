@@ -3,6 +3,7 @@ package com.rabbit.green.baking.app.recipes.selection;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.rabbit.green.baking.app.R;
 import com.rabbit.green.baking.app.data.model.Recipe;
 import com.rabbit.green.baking.app.data.source.IDataSource;
 import com.rabbit.green.baking.app.recipes.selection.adapter.RecipeAdapter;
@@ -59,7 +60,7 @@ public class SelectRecipeViewModel {
     }
 
     public RecyclerView.LayoutManager getLayoutManager() {
-        return new GridLayoutManager(activity, 1);
+        return new GridLayoutManager(activity, activity.getResources().getInteger(R.integer.grid_span_count));
     }
 
     public RecipeAdapter getAdapter() {

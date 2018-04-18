@@ -41,24 +41,32 @@ public class StepsActivity extends BaseActivity {
 
         if (binding.stepDetailContent != null) {
             if (savedInstanceState == null) {
-                fragment = new StepDetailFragment();
-                Bundle bundle = new Bundle();
-                bundle.putParcelable(
-                        StepDetailFragment.ARG_STEP, Parcels.wrap(viewModel.getStep(0)));
-                fragment.setArguments(bundle);
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .add(R.id.step_detail_content, fragment, StepDetailFragment.TAG)
-                        .commit();
+                initFragment();
             } else {
                 fragment = (StepDetailFragment) getSupportFragmentManager().findFragmentByTag(StepDetailFragment.TAG);
+
+                //This can happen whe user navigates back to the activity in different orientation
+                if (fragment == null) {
+                    initFragment();
+                }
             }
 
             viewModel.setMasterDetailMode(true);
         } else {
             viewModel.setMasterDetailMode(false);
         }
+    }
 
+    private void initFragment() {
+        fragment = new StepDetailFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(
+                StepDetailFragment.ARG_STEP, Parcels.wrap(viewModel.getStep(0)));
+        fragment.setArguments(bundle);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.step_detail_content, fragment, StepDetailFragment.TAG)
+                .commit();
     }
 
     void updateStepDetailFragment(Step step) {

@@ -5,6 +5,8 @@ import android.databinding.BindingAdapter;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
+import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.ui.PlayerView;
 import com.rabbit.green.baking.app.R;
 import com.squareup.picasso.Picasso;
 
@@ -19,5 +21,10 @@ public class BaseViewModel extends BaseObservable {
                     .placeholder(R.drawable.recipe_background)
                     .into(imageView);
         }
+    }
+
+    @BindingAdapter("player")
+    public static void setPlayer(PlayerView playerView, ExoPlayer exoPlayer) {
+        playerView.setPlayer(exoPlayer);
     }
 }
