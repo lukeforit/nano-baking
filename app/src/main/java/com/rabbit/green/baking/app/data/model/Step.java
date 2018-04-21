@@ -3,7 +3,7 @@ package com.rabbit.green.baking.app.data.model;
 import org.parceler.Parcel;
 
 @Parcel(Parcel.Serialization.BEAN)
-public class Step {
+public class Step implements StepTitle {
     private int id;
     private String shortDescription;
     private String description;
@@ -48,5 +48,10 @@ public class Step {
 
     public void setThumbnailURL(String thumbnailURL) {
         this.thumbnailURL = thumbnailURL;
+    }
+
+    @Override
+    public String title() {
+        return getShortDescription();
     }
 }

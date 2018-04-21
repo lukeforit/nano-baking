@@ -4,16 +4,20 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.rabbit.green.baking.app.data.model.Ingredient;
 import com.rabbit.green.baking.app.data.model.Recipe;
-import com.rabbit.green.baking.app.data.model.Step;
 import com.rabbit.green.baking.app.recipes.BaseViewModel;
+import com.rabbit.green.baking.app.recipes.steps.adapter.OnStepClickListener;
+import com.rabbit.green.baking.app.recipes.steps.adapter.StepsAdapter;
 import com.rabbit.green.baking.app.recipes.steps.details.SingleStepActivity;
 
 import org.parceler.Parcels;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
-import static com.rabbit.green.baking.app.recipes.steps.details.SingleStepActivity.BUNDLE_KEY_STEP;
+import static com.rabbit.green.baking.app.recipes.steps.adapter.OnStepClickListener.INGREDIENT_STEP_ID;
 
 public class StepsViewModel extends BaseViewModel {
 
@@ -24,10 +28,12 @@ public class StepsViewModel extends BaseViewModel {
     StepsAdapter adapter;
 
     private Recipe recipe;
+    private int currentStepId;
     private OnStepClickListener listener;
 
     @Inject
     public StepsViewModel() {
+        currentStepId = INGREDIENT_STEP_ID;
     }
 
     public void setup(Recipe recipe) {
@@ -43,8 +49,8 @@ public class StepsViewModel extends BaseViewModel {
         return adapter;
     }
 
-    Step getStep(int id) {
-        return recipe.getSteps().get(id);
+    List<Ingredient> getIngredientList() {
+        return recipe.getIngredients();
     }
 
     public void setMasterDetailMode(boolean masterDetailMode) {
@@ -67,12 +73,23 @@ public class StepsViewModel extends BaseViewModel {
     }
 
     private void navigateToDetailsActivity(int detailId) {
+        currentStepId = detailId;
         Intent intent = new Intent(activity, SingleStepActivity.class);
-        intent.putExtra(BUNDLE_KEY_STEP, Parcels.wrap(recipe.getSteps().get(detailId)));
+        intent.putExtra(SingleStepActivity.BUNDLE_KEY_RECIPE, Parcels.wrap(recipe));
+        intent.putExtra(SingleStepActivity.BUNDLE_KEY_STEP_ID, detailId);
         activity.startActivity(intent);
     }
 
     private void updateDetailsView(int detailId) {
-        activity.updateStepDetailFragment(recipe.getSteps().get(detailId));
+        if (currentStepId != detailId) {
+            if (detailId == INGREDIENT_STEP_ID) {
+                activity.replaceFragment(recipe.getIngredients());
+            } else if (currentStepId == INGREDIENT_STEP_ID) {
+                activity.replaceFragment(recipe.getSteps().get(detailId));
+            } else {
+                activity.updateStepDetailFragment(recipe.getSteps().get(detailId));
+            }
+            currentStepId = detailId;
+        }
     }
 }
