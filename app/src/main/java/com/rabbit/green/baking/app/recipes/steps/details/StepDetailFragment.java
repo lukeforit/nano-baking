@@ -20,7 +20,7 @@ import javax.inject.Inject;
 public class StepDetailFragment extends BaseFragment {
 
     public static final String ARG_STEP = "step";
-    public static final String TAG = "TAG_StepDetailFragment";
+    public static final String BUNDLE_KEY_STEP = "step";
 
     @Inject
     StepDetailsViewModel viewModel;
@@ -32,9 +32,13 @@ public class StepDetailFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Bundle bundle = getArguments();
-        if (bundle != null && bundle.containsKey(ARG_STEP)) {
-            setData(Parcels.<Step>unwrap(bundle.getParcelable(ARG_STEP)));
+        if (savedInstanceState != null && savedInstanceState.getParcelable(BUNDLE_KEY_STEP) != null) {
+            setData(Parcels.<Step>unwrap(savedInstanceState.getParcelable(BUNDLE_KEY_STEP)));
+        } else {
+            Bundle bundle = getArguments();
+            if (bundle != null && bundle.containsKey(ARG_STEP)) {
+                setData(Parcels.<Step>unwrap(bundle.getParcelable(ARG_STEP)));
+            }
         }
     }
 
@@ -56,6 +60,12 @@ public class StepDetailFragment extends BaseFragment {
     public void onStop() {
         super.onStop();
         viewModel.releasePlayer();
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(BUNDLE_KEY_STEP, Parcels.wrap(viewModel.getStep()));
     }
 
     public void setData(Step step) {

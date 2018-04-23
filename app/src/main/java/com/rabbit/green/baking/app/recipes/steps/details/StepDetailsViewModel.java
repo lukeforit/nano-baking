@@ -49,6 +49,10 @@ public class StepDetailsViewModel extends BaseViewModel {
         exoPlayer.release();
     }
 
+    public Step getStep() {
+        return step;
+    }
+
     public String getDescription() {
         return step != null ? step.getDescription() : "";
     }

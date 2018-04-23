@@ -13,13 +13,13 @@ import com.rabbit.green.baking.app.R;
 import com.rabbit.green.baking.app.data.model.Ingredient;
 import com.rabbit.green.baking.app.recipes.BaseFragment;
 
+import org.parceler.Parcels;
+
 import java.util.List;
 
 import javax.inject.Inject;
 
 public class IngredientsFragment extends BaseFragment {
-
-    public static final String TAG = "TAG_IngredientsFragment";
 
     private static final String ARG_INGREDIENTS = "ingredients";
 
@@ -32,8 +32,10 @@ public class IngredientsFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            //TODO retrieve args
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            List<Ingredient> list = Parcels.unwrap(bundle.getParcelable(ARG_INGREDIENTS));
+            viewModel.setup(list);
         }
     }
 
@@ -49,7 +51,7 @@ public class IngredientsFragment extends BaseFragment {
     public static IngredientsFragment newInstance(List<Ingredient> ingredientList) {
         IngredientsFragment fragment = new IngredientsFragment();
         Bundle args = new Bundle();
-        //TODO add list to arguments
+        args.putParcelable(ARG_INGREDIENTS, Parcels.wrap(ingredientList));
         fragment.setArguments(args);
         return fragment;
     }

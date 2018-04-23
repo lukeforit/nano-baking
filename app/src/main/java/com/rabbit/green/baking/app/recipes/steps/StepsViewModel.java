@@ -53,6 +53,14 @@ public class StepsViewModel extends BaseViewModel {
         return recipe.getIngredients();
     }
 
+    int getCurrentStepId() {
+        return currentStepId;
+    }
+
+    void setCurrentStepId(int currentStepId) {
+        this.currentStepId = currentStepId;
+    }
+
     public void setMasterDetailMode(boolean masterDetailMode) {
         if (masterDetailMode) {
             listener = new OnStepClickListener() {

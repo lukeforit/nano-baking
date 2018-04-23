@@ -24,6 +24,7 @@ import javax.inject.Inject;
 public class StepsActivity extends BaseActivity {
 
     public static final String BUNDLE_KEY_RECIPE = "BUNDLE_KEY_RECIPE";
+    public static final String BUNDLE_KEY_CURRENT_ID = "BUNDLE_KEY_CURRENT_ID";
 
     @Inject
     StepsViewModel viewModel;
@@ -48,8 +49,9 @@ public class StepsActivity extends BaseActivity {
             if (savedInstanceState == null) {
                 initFragment();
             } else {
-                //TODO restoring fragment
-                fragment = (BaseFragment) getSupportFragmentManager().findFragmentByTag(StepDetailFragment.TAG);
+                viewModel.setCurrentStepId(savedInstanceState.getInt(
+                        BUNDLE_KEY_CURRENT_ID, viewModel.getCurrentStepId()));
+                fragment = (BaseFragment) getSupportFragmentManager().findFragmentByTag(BaseFragment.TAG);
 
                 //This can happen whe user navigates back to the activity in different orientation
                 if (fragment == null) {
@@ -63,6 +65,12 @@ public class StepsActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(BUNDLE_KEY_CURRENT_ID, viewModel.getCurrentStepId());
+    }
+
     private void initFragment() {
         replaceFragment(viewModel.getIngredientList());
     }
@@ -71,7 +79,7 @@ public class StepsActivity extends BaseActivity {
         fragment = StepDetailFragment.newInstance(step);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.step_detail_content, fragment, StepDetailFragment.TAG)
+                .replace(R.id.step_detail_content, fragment, BaseFragment.TAG)
                 .commit();
     }
 
@@ -79,7 +87,7 @@ public class StepsActivity extends BaseActivity {
         fragment = IngredientsFragment.newInstance(list);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.step_detail_content, fragment, IngredientsFragment.TAG)
+                .replace(R.id.step_detail_content, fragment, BaseFragment.TAG)
                 .commit();
     }
 
