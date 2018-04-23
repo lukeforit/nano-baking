@@ -1,5 +1,8 @@
 package com.rabbit.green.baking.app.recipes.steps.single.ingredients;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
 import com.rabbit.green.baking.app.data.model.Ingredient;
 import com.rabbit.green.baking.app.recipes.BaseViewModel;
 
@@ -9,13 +12,25 @@ import javax.inject.Inject;
 
 public class IngredientsViewModel extends BaseViewModel {
 
-    private List<Ingredient> ingredients;
+    @Inject
+    IngredientAdapter adapter;
+
+    @Inject
+    IngredientsFragment fragment;
 
     @Inject
     public IngredientsViewModel() {
     }
 
     public void setup(List<Ingredient> list) {
-        this.ingredients = list;
+        adapter.setData(list);
+    }
+
+    public IngredientAdapter getAdapter() {
+        return adapter;
+    }
+
+    public RecyclerView.LayoutManager getLayoutManager() {
+        return new LinearLayoutManager(fragment.getContext());
     }
 }
