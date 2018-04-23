@@ -9,7 +9,7 @@ import com.rabbit.green.baking.app.data.model.Recipe;
 import com.rabbit.green.baking.app.recipes.BaseViewModel;
 import com.rabbit.green.baking.app.recipes.steps.adapter.OnStepClickListener;
 import com.rabbit.green.baking.app.recipes.steps.adapter.StepsAdapter;
-import com.rabbit.green.baking.app.recipes.steps.details.SingleStepActivity;
+import com.rabbit.green.baking.app.recipes.steps.single.SingleStepActivity;
 
 import org.parceler.Parcels;
 

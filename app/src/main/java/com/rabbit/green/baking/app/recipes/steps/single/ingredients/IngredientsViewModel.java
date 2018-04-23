@@ -1,4 +1,4 @@
-package com.rabbit.green.baking.app.recipes.steps.details;
+package com.rabbit.green.baking.app.recipes.steps.single.ingredients;
 
 import com.rabbit.green.baking.app.data.model.Ingredient;
 import com.rabbit.green.baking.app.recipes.BaseViewModel;

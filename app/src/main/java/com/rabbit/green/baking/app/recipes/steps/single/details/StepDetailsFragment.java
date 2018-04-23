@@ -1,4 +1,4 @@
-package com.rabbit.green.baking.app.recipes.steps.details;
+package com.rabbit.green.baking.app.recipes.steps.single.details;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -17,7 +17,7 @@ import org.parceler.Parcels;
 
 import javax.inject.Inject;
 
-public class StepDetailFragment extends BaseFragment {
+public class StepDetailsFragment extends BaseFragment {
 
     public static final String ARG_STEP = "step";
     public static final String BUNDLE_KEY_STEP = "step";
@@ -25,7 +25,7 @@ public class StepDetailFragment extends BaseFragment {
     @Inject
     StepDetailsViewModel viewModel;
 
-    public StepDetailFragment() {
+    public StepDetailsFragment() {
     }
 
     @Override
@@ -45,7 +45,7 @@ public class StepDetailFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ViewDataBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_step_detail, container, false);
+        ViewDataBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_step_details, container, false);
         binding.setVariable(BR.vm, viewModel);
         return binding.getRoot();
     }
@@ -72,11 +72,11 @@ public class StepDetailFragment extends BaseFragment {
         viewModel.setData(step);
     }
 
-    public static StepDetailFragment newInstance(Step step) {
-        StepDetailFragment fragment = new StepDetailFragment();
+    public static StepDetailsFragment newInstance(Step step) {
+        StepDetailsFragment fragment = new StepDetailsFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable(
-                StepDetailFragment.ARG_STEP, Parcels.wrap(step));
+                StepDetailsFragment.ARG_STEP, Parcels.wrap(step));
         fragment.setArguments(bundle);
         return fragment;
     }

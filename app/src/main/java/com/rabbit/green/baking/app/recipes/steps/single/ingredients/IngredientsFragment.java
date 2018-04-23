@@ -1,4 +1,4 @@
-package com.rabbit.green.baking.app.recipes.steps.details;
+package com.rabbit.green.baking.app.recipes.steps.single.ingredients;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;

@@ -1,6 +1,6 @@
 package com.rabbit.green.baking.app.di;
 
-import com.rabbit.green.baking.app.recipes.steps.details.SingleStepActivity;
+import com.rabbit.green.baking.app.recipes.steps.single.SingleStepActivity;
 import com.rabbit.green.baking.app.recipes.selection.SelectRecipeActivity;
 import com.rabbit.green.baking.app.recipes.steps.StepsActivity;
 

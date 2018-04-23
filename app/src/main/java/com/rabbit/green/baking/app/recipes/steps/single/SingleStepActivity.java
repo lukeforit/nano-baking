@@ -1,4 +1,4 @@
-package com.rabbit.green.baking.app.recipes.steps.details;
+package com.rabbit.green.baking.app.recipes.steps.single;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import com.rabbit.green.baking.app.BR;
 import com.rabbit.green.baking.app.R;
 import com.rabbit.green.baking.app.databinding.ActivitySingleStepBinding;
 import com.rabbit.green.baking.app.recipes.BaseActivity;
+import com.rabbit.green.baking.app.recipes.steps.single.details.StepDetailsFragment;
 
 import javax.inject.Inject;
 
@@ -29,9 +30,9 @@ public class SingleStepActivity extends BaseActivity {
         if (savedInstanceState == null) {
             Bundle arguments = new Bundle();
             //TODO handle different data
-//            arguments.putParcelable(StepDetailFragment.ARG_STEP,
+//            arguments.putParcelable(StepDetailsFragment.ARG_STEP,
 //                    getIntent().getParcelableExtra(BUNDLE_KEY_STEP));
-            StepDetailFragment fragment = new StepDetailFragment();
+            StepDetailsFragment fragment = new StepDetailsFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.step_detail_content, fragment)

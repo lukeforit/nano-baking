@@ -12,8 +12,8 @@ import com.rabbit.green.baking.app.data.model.Step;
 import com.rabbit.green.baking.app.databinding.ActivityStepsBinding;
 import com.rabbit.green.baking.app.recipes.BaseActivity;
 import com.rabbit.green.baking.app.recipes.BaseFragment;
-import com.rabbit.green.baking.app.recipes.steps.details.IngredientsFragment;
-import com.rabbit.green.baking.app.recipes.steps.details.StepDetailFragment;
+import com.rabbit.green.baking.app.recipes.steps.single.details.StepDetailsFragment;
+import com.rabbit.green.baking.app.recipes.steps.single.ingredients.IngredientsFragment;
 
 import org.parceler.Parcels;
 
@@ -76,7 +76,7 @@ public class StepsActivity extends BaseActivity {
     }
 
     void replaceFragment(Step step) {
-        fragment = StepDetailFragment.newInstance(step);
+        fragment = StepDetailsFragment.newInstance(step);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.step_detail_content, fragment, BaseFragment.TAG)
@@ -92,8 +92,8 @@ public class StepsActivity extends BaseActivity {
     }
 
     void updateStepDetailFragment(Step step) {
-        if (fragment instanceof StepDetailFragment) {
-            ((StepDetailFragment) fragment).setData(step);
+        if (fragment instanceof StepDetailsFragment) {
+            ((StepDetailsFragment) fragment).setData(step);
         }
     }
 }

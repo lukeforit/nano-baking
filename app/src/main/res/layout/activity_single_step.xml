@@ -5,7 +5,7 @@
 
         <variable
             name="vm"
-            type="com.rabbit.green.baking.app.recipes.steps.details.SingleStepViewModel" />
+            type="com.rabbit.green.baking.app.recipes.steps.single.SingleStepViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
