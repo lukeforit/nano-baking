@@ -54,4 +54,9 @@ public class Step implements StepTitle {
     public String title() {
         return getShortDescription();
     }
+
+    @Override
+    public String imageUrl() {
+        return getThumbnailURL();
+    }
 }

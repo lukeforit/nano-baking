@@ -20,6 +20,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepItemViewHolder>
         implements OnViewHolderClickListener {
 
     private static final int DATA_SHIFT = 1;
+    private static final String EMPTY_STRING = "";
 
     private List<Step> data;
 
@@ -29,6 +30,11 @@ public class StepsAdapter extends RecyclerView.Adapter<StepItemViewHolder>
         @Override
         public String title() {
             return "Ingredients";
+        }
+
+        @Override
+        public String imageUrl() {
+            return EMPTY_STRING;
         }
     };
 
