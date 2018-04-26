@@ -4,22 +4,18 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.rabbit.green.baking.app.data.model.Ingredient;
 import com.rabbit.green.baking.app.data.model.Recipe;
-import com.rabbit.green.baking.app.recipes.BaseViewModel;
 import com.rabbit.green.baking.app.recipes.steps.adapter.OnStepClickListener;
 import com.rabbit.green.baking.app.recipes.steps.adapter.StepsAdapter;
 import com.rabbit.green.baking.app.recipes.steps.single.SingleStepActivity;
 
 import org.parceler.Parcels;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import static com.rabbit.green.baking.app.recipes.steps.adapter.OnStepClickListener.INGREDIENT_STEP_ID;
 
-public class StepsViewModel extends BaseViewModel {
+public class StepsViewModel extends BaseStepViewModel {
 
     @Inject
     StepsActivity activity;
@@ -27,17 +23,14 @@ public class StepsViewModel extends BaseViewModel {
     @Inject
     StepsAdapter adapter;
 
-    private Recipe recipe;
-    private int currentStepId;
     private OnStepClickListener listener;
 
     @Inject
     public StepsViewModel() {
-        currentStepId = INGREDIENT_STEP_ID;
     }
 
     public void setup(Recipe recipe) {
-        this.recipe = recipe;
+        setRecipe(recipe);
         adapter.setData(recipe.getSteps());
     }
 
@@ -47,18 +40,6 @@ public class StepsViewModel extends BaseViewModel {
 
     public StepsAdapter getAdapter() {
         return adapter;
-    }
-
-    List<Ingredient> getIngredientList() {
-        return recipe.getIngredients();
-    }
-
-    int getCurrentStepId() {
-        return currentStepId;
-    }
-
-    void setCurrentStepId(int currentStepId) {
-        this.currentStepId = currentStepId;
     }
 
     public void setMasterDetailMode(boolean masterDetailMode) {

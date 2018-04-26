@@ -2,11 +2,11 @@ package com.rabbit.green.baking.app.recipes.steps.single;
 
 import android.view.View;
 
-import com.rabbit.green.baking.app.recipes.BaseViewModel;
+import com.rabbit.green.baking.app.recipes.steps.BaseStepViewModel;
 
 import javax.inject.Inject;
 
-public class SingleStepViewModel extends BaseViewModel {
+public class SingleStepViewModel extends BaseStepViewModel {
 
     @Inject
     public SingleStepViewModel() {

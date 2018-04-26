@@ -6,30 +6,21 @@ import android.os.Bundle;
 
 import com.rabbit.green.baking.app.BR;
 import com.rabbit.green.baking.app.R;
-import com.rabbit.green.baking.app.data.model.Ingredient;
 import com.rabbit.green.baking.app.data.model.Recipe;
-import com.rabbit.green.baking.app.data.model.Step;
 import com.rabbit.green.baking.app.databinding.ActivityStepsBinding;
-import com.rabbit.green.baking.app.recipes.BaseActivity;
 import com.rabbit.green.baking.app.recipes.BaseFragment;
-import com.rabbit.green.baking.app.recipes.steps.single.details.StepDetailsFragment;
-import com.rabbit.green.baking.app.recipes.steps.single.ingredients.IngredientsFragment;
 
 import org.parceler.Parcels;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
-public class StepsActivity extends BaseActivity {
+public class StepsActivity extends BaseStepActivity {
 
     public static final String BUNDLE_KEY_RECIPE = "BUNDLE_KEY_RECIPE";
     public static final String BUNDLE_KEY_CURRENT_ID = "BUNDLE_KEY_CURRENT_ID";
 
     @Inject
     StepsViewModel viewModel;
-
-    private BaseFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,27 +64,5 @@ public class StepsActivity extends BaseActivity {
 
     private void initFragment() {
         replaceFragment(viewModel.getIngredientList());
-    }
-
-    void replaceFragment(Step step) {
-        fragment = StepDetailsFragment.newInstance(step);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.step_detail_content, fragment, BaseFragment.TAG)
-                .commit();
-    }
-
-    void replaceFragment(List<Ingredient> list) {
-        fragment = IngredientsFragment.newInstance(list);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.step_detail_content, fragment, BaseFragment.TAG)
-                .commit();
-    }
-
-    void updateStepDetailFragment(Step step) {
-        if (fragment instanceof StepDetailsFragment) {
-            ((StepDetailsFragment) fragment).setData(step);
-        }
     }
 }
