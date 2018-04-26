@@ -28,6 +28,7 @@ public class StepDetailsViewModel extends BaseViewModel {
     Context context;
 
     private Step step;
+    private long seekPosition;
 
     @Inject
     public StepDetailsViewModel() {
@@ -43,6 +44,17 @@ public class StepDetailsViewModel extends BaseViewModel {
         MediaSource mediaSource = new ExtractorMediaSource.Factory(factory)
                 .createMediaSource(Uri.parse(step.getVideoURL()));
         exoPlayer.prepare(mediaSource);
+        if (seekPosition > 0) {
+            exoPlayer.seekTo(seekPosition);
+        }
+    }
+
+    public long getPlayerCurrentPosition() {
+        return exoPlayer.getCurrentPosition();
+    }
+
+    public void setSeekPosition(long seekPosition) {
+        this.seekPosition = seekPosition;
     }
 
     public void releasePlayer() {

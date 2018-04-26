@@ -17,7 +17,6 @@ import javax.inject.Inject;
 public class StepsActivity extends BaseStepActivity {
 
     public static final String BUNDLE_KEY_RECIPE = "BUNDLE_KEY_RECIPE";
-    public static final String BUNDLE_KEY_CURRENT_ID = "BUNDLE_KEY_CURRENT_ID";
 
     @Inject
     StepsViewModel viewModel;

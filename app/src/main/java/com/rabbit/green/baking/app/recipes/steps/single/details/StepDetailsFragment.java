@@ -19,8 +19,9 @@ import javax.inject.Inject;
 
 public class StepDetailsFragment extends BaseFragment {
 
-    public static final String ARG_STEP = "step";
-    public static final String BUNDLE_KEY_STEP = "step";
+    public static final String ARG_STEP = "ARG_STEP";
+    public static final String BUNDLE_KEY_STEP = "BUNDLE_KEY_STEP";
+    public static final String BUNDLE_KEY_PLAYER_SEEK_POSITION = "BUNDLE_KEY_PLAYER_SEEK_POSITION";
 
     @Inject
     StepDetailsViewModel viewModel;
@@ -32,8 +33,11 @@ public class StepDetailsFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState != null && savedInstanceState.getParcelable(BUNDLE_KEY_STEP) != null) {
-            setData(Parcels.<Step>unwrap(savedInstanceState.getParcelable(BUNDLE_KEY_STEP)));
+        if (savedInstanceState != null) {
+            if (savedInstanceState.getParcelable(BUNDLE_KEY_STEP) != null){
+                setData(Parcels.<Step>unwrap(savedInstanceState.getParcelable(BUNDLE_KEY_STEP)));
+            }
+            viewModel.setSeekPosition(savedInstanceState.getLong(BUNDLE_KEY_PLAYER_SEEK_POSITION));
         } else {
             Bundle bundle = getArguments();
             if (bundle != null && bundle.containsKey(ARG_STEP)) {
@@ -66,6 +70,7 @@ public class StepDetailsFragment extends BaseFragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(BUNDLE_KEY_STEP, Parcels.wrap(viewModel.getStep()));
+        outState.putLong(BUNDLE_KEY_PLAYER_SEEK_POSITION, viewModel.getPlayerCurrentPosition());
     }
 
     public void setData(Step step) {

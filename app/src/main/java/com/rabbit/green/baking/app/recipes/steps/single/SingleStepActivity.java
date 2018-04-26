@@ -8,6 +8,7 @@ import com.rabbit.green.baking.app.BR;
 import com.rabbit.green.baking.app.R;
 import com.rabbit.green.baking.app.data.model.Recipe;
 import com.rabbit.green.baking.app.databinding.ActivitySingleStepBinding;
+import com.rabbit.green.baking.app.recipes.BaseFragment;
 import com.rabbit.green.baking.app.recipes.steps.BaseStepActivity;
 
 import org.parceler.Parcels;
@@ -46,6 +47,21 @@ public class SingleStepActivity extends BaseStepActivity {
                     replaceFragment(viewModel.getCurrentStep());
                 }
             }
+        } else {
+            viewModel.setCurrentStepId(savedInstanceState.getInt(
+                    BUNDLE_KEY_CURRENT_ID, viewModel.getCurrentStepId()));
+            fragment = (BaseFragment) getSupportFragmentManager().findFragmentByTag(BaseFragment.TAG);
+
+            //This can happen whe user navigates back to the activity in different orientation
+            if (fragment == null) {
+                replaceFragment(viewModel.getIngredientList());
+            }
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(BUNDLE_KEY_CURRENT_ID, viewModel.getCurrentStepId());
     }
 }
