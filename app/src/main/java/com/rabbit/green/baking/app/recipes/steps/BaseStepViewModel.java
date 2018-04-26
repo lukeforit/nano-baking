@@ -36,6 +36,7 @@ public class BaseStepViewModel extends BaseViewModel {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+        notifyChange();
     }
 
     public Step getCurrentStep() {

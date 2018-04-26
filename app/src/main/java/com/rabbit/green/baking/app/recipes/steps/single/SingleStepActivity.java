@@ -33,14 +33,17 @@ public class SingleStepActivity extends BaseStepActivity {
         binding.setVariable(BR.vm, viewModel);
         binding.executePendingBindings();
 
+        Intent intent = getIntent();
+        if (intent != null
+                && intent.hasExtra(BUNDLE_KEY_RECIPE) && intent.hasExtra(BUNDLE_KEY_STEP_ID)) {
+            viewModel.setCurrentStepId(
+                    intent.getIntExtra(BUNDLE_KEY_STEP_ID, INGREDIENT_STEP_ID));
+            viewModel.setRecipe(
+                    Parcels.<Recipe>unwrap(intent.getParcelableExtra(BUNDLE_KEY_RECIPE)));
+        }
         if (savedInstanceState == null) {
-            Intent intent = getIntent();
             if (intent != null
                     && intent.hasExtra(BUNDLE_KEY_RECIPE) && intent.hasExtra(BUNDLE_KEY_STEP_ID)) {
-                viewModel.setCurrentStepId(
-                        intent.getIntExtra(BUNDLE_KEY_STEP_ID, INGREDIENT_STEP_ID));
-                viewModel.setRecipe(
-                        Parcels.<Recipe>unwrap(intent.getParcelableExtra(BUNDLE_KEY_RECIPE)));
                 if (viewModel.getCurrentStepId() == INGREDIENT_STEP_ID) {
                     replaceFragment(viewModel.getIngredientList());
                 } else {

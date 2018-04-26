@@ -28,6 +28,7 @@
             android:drawableLeft="@drawable/ic_keyboard_arrow_left"
             android:onClick="@{vm::onPreviousClick}"
             android:text="Previous"
+            android:enabled="@{vm.previousButtonEnabled}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -38,6 +39,7 @@
             android:drawableRight="@drawable/ic_keyboard_arrow_right"
             android:onClick="@{vm::onNextClick}"
             android:text="Next"
+            android:enabled="@{vm.nextButtonEnabled}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
     </android.support.constraint.ConstraintLayout>

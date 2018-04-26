@@ -19,7 +19,7 @@ public class BaseStepActivity extends BaseActivity {
 
     protected BaseFragment fragment;
 
-    protected void replaceFragment(Step step) {
+    public void replaceFragment(Step step) {
         fragment = StepDetailsFragment.newInstance(step);
         getSupportFragmentManager()
                 .beginTransaction()
@@ -27,7 +27,7 @@ public class BaseStepActivity extends BaseActivity {
                 .commit();
     }
 
-    protected void replaceFragment(List<Ingredient> list) {
+    public void replaceFragment(List<Ingredient> list) {
         fragment = IngredientsFragment.newInstance(list);
         getSupportFragmentManager()
                 .beginTransaction()
@@ -35,7 +35,7 @@ public class BaseStepActivity extends BaseActivity {
                 .commit();
     }
 
-    protected void updateStepDetailFragment(Step step) {
+    public void updateStepDetailFragment(Step step) {
         if (fragment instanceof StepDetailsFragment) {
             ((StepDetailsFragment) fragment).setData(step);
         }
