@@ -4,6 +4,7 @@ import android.databinding.BaseObservable;
 
 import com.rabbit.green.baking.app.data.model.StepTitle;
 
+@SuppressWarnings("WeakerAccess")
 public class StepItemViewModel extends BaseObservable {
     private StepTitle stepTitle;
 

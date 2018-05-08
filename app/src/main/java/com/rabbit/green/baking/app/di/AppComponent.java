@@ -20,6 +20,7 @@ public interface AppComponent {
     @Component.Builder
     interface Builder {
         AppComponent build();
+
         @BindsInstance
         Builder appModule(BakingApp bakingApp);
     }

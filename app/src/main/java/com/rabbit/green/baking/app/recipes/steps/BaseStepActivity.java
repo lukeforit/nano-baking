@@ -15,7 +15,7 @@ import java.util.List;
 @SuppressLint("Registered")
 public class BaseStepActivity extends BaseActivity {
 
-    public static final String BUNDLE_KEY_CURRENT_ID = "BUNDLE_KEY_CURRENT_ID";
+    protected static final String BUNDLE_KEY_CURRENT_ID = "BUNDLE_KEY_CURRENT_ID";
 
     protected BaseFragment fragment;
 

@@ -6,11 +6,9 @@ import com.rabbit.green.baking.app.data.source.IDataSource;
 import java.io.IOException;
 import java.util.List;
 
-import javax.inject.Inject;
-
 public class NetDataSource implements IDataSource {
 
-    private IDataRestService restService;
+    private final IDataRestService restService;
 
     public NetDataSource(IDataRestService restService) {
         this.restService = restService;

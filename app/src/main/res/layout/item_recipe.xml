@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -19,16 +19,16 @@
             android:id="@+id/step_thumbnail_iv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:imageUrl="@{item.image}"
             android:adjustViewBounds="true"
+            app:imageUrl="@{item.image}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/recipe_background" />
 
         <TextView
-            style="@style/TextView.Card.Large"
             android:id="@+id/step_desc_tv"
+            style="@style/TextView.Card.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{item.name}"
@@ -39,8 +39,8 @@
             tools:text="Recipe name" />
 
         <TextView
-            style="@style/TextView.License"
             android:id="@+id/credits_tv"
+            style="@style/TextView.License"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

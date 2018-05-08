@@ -13,6 +13,7 @@ import dagger.android.HasActivityInjector;
 
 public class BakingApp extends Application implements HasActivityInjector {
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
 

@@ -12,9 +12,11 @@ import javax.inject.Inject;
 
 public class IngredientsViewModel extends BaseViewModel {
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     IngredientAdapter adapter;
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     IngredientsFragment fragment;
 

@@ -7,9 +7,9 @@ import android.view.View;
 import com.rabbit.green.baking.app.BR;
 
 public class BaseViewHolder<T> extends RecyclerView.ViewHolder implements View.OnClickListener {
-    private ViewDataBinding binding;
+    private final ViewDataBinding binding;
 
-    private OnViewHolderClickListener onViewHolderClickListener;
+    private final OnViewHolderClickListener onViewHolderClickListener;
 
     BaseViewHolder(ViewDataBinding binding, OnViewHolderClickListener listener) {
         super(binding.getRoot());

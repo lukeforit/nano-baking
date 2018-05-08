@@ -14,7 +14,7 @@ public class BaseStepViewModel extends BaseViewModel {
     protected Recipe recipe;
     protected int currentStepId;
 
-    public BaseStepViewModel() {
+    protected BaseStepViewModel() {
         currentStepId = INGREDIENT_STEP_ID;
     }
 

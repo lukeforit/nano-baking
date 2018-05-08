@@ -19,14 +19,24 @@ import javax.inject.Inject;
 
 public class StepDetailsFragment extends BaseFragment {
 
-    public static final String ARG_STEP = "ARG_STEP";
-    public static final String BUNDLE_KEY_STEP = "BUNDLE_KEY_STEP";
-    public static final String BUNDLE_KEY_PLAYER_SEEK_POSITION = "BUNDLE_KEY_PLAYER_SEEK_POSITION";
+    private static final String ARG_STEP = "ARG_STEP";
+    private static final String BUNDLE_KEY_STEP = "BUNDLE_KEY_STEP";
+    private static final String BUNDLE_KEY_PLAYER_SEEK_POSITION = "BUNDLE_KEY_PLAYER_SEEK_POSITION";
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     StepDetailsViewModel viewModel;
 
     public StepDetailsFragment() {
+    }
+
+    public static StepDetailsFragment newInstance(Step step) {
+        StepDetailsFragment fragment = new StepDetailsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(
+                StepDetailsFragment.ARG_STEP, Parcels.wrap(step));
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
@@ -34,7 +44,7 @@ public class StepDetailsFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
 
         if (savedInstanceState != null) {
-            if (savedInstanceState.getParcelable(BUNDLE_KEY_STEP) != null){
+            if (savedInstanceState.getParcelable(BUNDLE_KEY_STEP) != null) {
                 setData(Parcels.<Step>unwrap(savedInstanceState.getParcelable(BUNDLE_KEY_STEP)));
             }
             viewModel.setSeekPosition(savedInstanceState.getLong(BUNDLE_KEY_PLAYER_SEEK_POSITION));
@@ -75,14 +85,5 @@ public class StepDetailsFragment extends BaseFragment {
 
     public void setData(Step step) {
         viewModel.setData(step);
-    }
-
-    public static StepDetailsFragment newInstance(Step step) {
-        StepDetailsFragment fragment = new StepDetailsFragment();
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(
-                StepDetailsFragment.ARG_STEP, Parcels.wrap(step));
-        fragment.setArguments(bundle);
-        return fragment;
     }
 }

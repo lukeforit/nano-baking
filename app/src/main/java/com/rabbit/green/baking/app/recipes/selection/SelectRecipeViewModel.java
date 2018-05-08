@@ -21,12 +21,15 @@ import io.reactivex.schedulers.Schedulers;
 
 public class SelectRecipeViewModel {
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     SelectRecipeActivity activity;
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     IDataSource dataSource;
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     RecipeAdapter adapter;
 
@@ -37,7 +40,7 @@ public class SelectRecipeViewModel {
     public void setup() {
         Single.fromCallable(new Callable<List<Recipe>>() {
             @Override
-            public List<Recipe> call() throws Exception {
+            public List<Recipe> call() {
                 return dataSource.getRecipes();
             }
         }).subscribeOn(Schedulers.io())

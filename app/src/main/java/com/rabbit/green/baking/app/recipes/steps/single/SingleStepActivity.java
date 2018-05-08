@@ -22,6 +22,7 @@ public class SingleStepActivity extends BaseStepActivity {
     public static final String BUNDLE_KEY_RECIPE = "BUNDLE_KEY_RECIPE";
     public static final String BUNDLE_KEY_STEP_ID = "BUNDLE_KEY_STEP_ID";
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     SingleStepViewModel viewModel;
 

@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             app:adapter="@{vm.adapter}"
             app:layoutManager="@{vm.layoutManager}"
-            tools:listitem="@layout/item_ingredient"/>
+            tools:listitem="@layout/item_ingredient" />
 
     </FrameLayout>
 </layout>

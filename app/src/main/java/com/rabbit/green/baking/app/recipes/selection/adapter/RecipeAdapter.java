@@ -14,6 +14,7 @@ import javax.inject.Inject;
 
 public class RecipeAdapter extends BaseAdapter<Recipe> {
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     SelectRecipeActivity activity;
 

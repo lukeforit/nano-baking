@@ -12,6 +12,7 @@ import javax.inject.Inject;
 
 public class SelectRecipeActivity extends BaseActivity {
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     SelectRecipeViewModel viewModel;
 

@@ -17,12 +17,15 @@ import static com.rabbit.green.baking.app.recipes.steps.adapter.OnStepClickListe
 
 public class StepsViewModel extends BaseStepViewModel {
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     StepsActivity activity;
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     StepsAdapter adapter;
 
+    @SuppressWarnings("FieldCanBeLocal")
     private OnStepClickListener listener;
 
     @Inject

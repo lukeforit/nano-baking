@@ -16,6 +16,7 @@ import dagger.android.support.HasSupportFragmentInjector;
 @SuppressLint("Registered")
 public class BaseActivity extends AppCompatActivity implements HasSupportFragmentInjector {
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
 

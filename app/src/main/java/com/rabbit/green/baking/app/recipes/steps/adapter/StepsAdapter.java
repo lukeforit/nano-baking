@@ -26,7 +26,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepItemViewHolder>
 
     private OnStepClickListener listener;
 
-    private StepTitle ingredientStep = new StepTitle() {
+    private final StepTitle ingredientStep = new StepTitle() {
         @Override
         public String title() {
             return "Ingredients";

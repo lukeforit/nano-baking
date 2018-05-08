@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,7 +10,6 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:baselineAligned="false"
@@ -23,18 +22,19 @@
             android:id="@+id/steps_rv"
             android:layout_width="@dimen/item_width"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/size_small"
             android:paddingEnd="@dimen/size_small"
+            android:paddingStart="@dimen/size_small"
             android:paddingTop="@dimen/size_small"
             app:adapter="@{vm.adapter}"
             app:layoutManager="@{vm.layoutManager}"
-            tools:listitem="@layout/item_step"/>
+            tools:listitem="@layout/item_step" />
 
         <FrameLayout
             android:id="@+id/step_detail_content"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            tools:ignore="InconsistentLayout" />
 
     </LinearLayout>
 </layout>

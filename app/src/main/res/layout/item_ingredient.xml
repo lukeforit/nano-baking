@@ -58,8 +58,8 @@
             tools:text="Ingredient" />
 
         <TextView
-            style="@style/TextView.Common"
             android:id="@+id/unit_tv"
+            style="@style/TextView.Common"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{item.measure}"
@@ -68,8 +68,8 @@
             tools:text="unit" />
 
         <TextView
-            style="@style/TextView.Common"
             android:id="@+id/qty_tv"
+            style="@style/TextView.Common"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{String.valueOf(item.quantity)}"

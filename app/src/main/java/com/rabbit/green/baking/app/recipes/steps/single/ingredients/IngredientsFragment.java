@@ -23,10 +23,19 @@ public class IngredientsFragment extends BaseFragment {
 
     private static final String ARG_INGREDIENTS = "ingredients";
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     IngredientsViewModel viewModel;
 
     public IngredientsFragment() {
+    }
+
+    public static IngredientsFragment newInstance(List<Ingredient> ingredientList) {
+        IngredientsFragment fragment = new IngredientsFragment();
+        Bundle args = new Bundle();
+        args.putParcelable(ARG_INGREDIENTS, Parcels.wrap(ingredientList));
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -46,13 +55,5 @@ public class IngredientsFragment extends BaseFragment {
                 container, false);
         binding.setVariable(BR.vm, viewModel);
         return binding.getRoot();
-    }
-
-    public static IngredientsFragment newInstance(List<Ingredient> ingredientList) {
-        IngredientsFragment fragment = new IngredientsFragment();
-        Bundle args = new Bundle();
-        args.putParcelable(ARG_INGREDIENTS, Parcels.wrap(ingredientList));
-        fragment.setArguments(args);
-        return fragment;
     }
 }

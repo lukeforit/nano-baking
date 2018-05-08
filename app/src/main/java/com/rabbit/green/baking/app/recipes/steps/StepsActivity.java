@@ -18,6 +18,7 @@ public class StepsActivity extends BaseStepActivity {
 
     public static final String BUNDLE_KEY_RECIPE = "BUNDLE_KEY_RECIPE";
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     StepsViewModel viewModel;
 

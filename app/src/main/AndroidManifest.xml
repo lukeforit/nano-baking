@@ -15,8 +15,7 @@
         <activity
             android:name=".recipes.steps.StepsActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".recipes.steps.single.SingleStepActivity"
             android:label="@string/title_item_detail"

@@ -11,6 +11,7 @@ import static com.rabbit.green.baking.app.recipes.steps.adapter.OnStepClickListe
 
 public class SingleStepViewModel extends BaseStepViewModel {
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     SingleStepActivity activity;
 

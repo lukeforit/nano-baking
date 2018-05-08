@@ -2,6 +2,7 @@ package com.rabbit.green.baking.app.data.model;
 
 import org.parceler.Parcel;
 
+@SuppressWarnings("WeakerAccess")
 @Parcel(Parcel.Serialization.BEAN)
 public class Step implements StepTitle {
     private int id;

@@ -10,9 +10,10 @@ import com.rabbit.green.baking.app.data.model.StepTitle;
 
 public class StepItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    private StepItemViewModel viewModel;
-    private ViewDataBinding binding;
-    private OnViewHolderClickListener onViewHolderClickListener;
+    private final StepItemViewModel viewModel;
+    @SuppressWarnings("FieldCanBeLocal")
+    private final ViewDataBinding binding;
+    private final OnViewHolderClickListener onViewHolderClickListener;
 
     public StepItemViewHolder(ViewDataBinding binding, OnViewHolderClickListener listener) {
         super(binding.getRoot());

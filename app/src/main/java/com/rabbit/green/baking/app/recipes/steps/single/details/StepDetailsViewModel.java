@@ -8,10 +8,7 @@ import android.view.View;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.SingleSampleMediaSource;
 import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.rabbit.green.baking.app.R;
 import com.rabbit.green.baking.app.data.model.Step;
 import com.rabbit.green.baking.app.recipes.BaseViewModel;
 
@@ -19,8 +16,11 @@ import javax.inject.Inject;
 
 public class StepDetailsViewModel extends BaseViewModel {
 
+    @SuppressWarnings("WeakerAccess")
     @Inject
     ExoPlayer exoPlayer;
+
+    @SuppressWarnings("WeakerAccess")
     @Inject
     DataSource.Factory factory;
 
