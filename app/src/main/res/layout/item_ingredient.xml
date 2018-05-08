@@ -9,38 +9,80 @@
             type="com.rabbit.green.baking.app.data.model.Ingredient" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/ingredient_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{item.ingredient}"
-            tools:text="Ingredient"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <!-- Static text - TextViews -->
 
         <TextView
+            android:id="@+id/label_ingredient_tv"
+            style="@style/TextView.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_ingredient"
+            app:layout_constraintBottom_toBottomOf="@+id/ingredient_tv"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/ingredient_tv" />
+
+        <TextView
+            android:id="@+id/label_unit_tv"
+            style="@style/TextView.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_unit"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/unit_tv" />
+
+        <TextView
+            android:id="@+id/label_qty_tv"
+            style="@style/TextView.Label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_Quantity"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/qty_tv" />
+
+        <!-- Dynamic text - TextViews -->
+
+        <TextView
+            android:id="@+id/ingredient_tv"
+            style="@style/TextView.Common"
+            android:layout_width="@dimen/size_none"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@{item.ingredient}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Ingredient" />
+
+        <TextView
+            style="@style/TextView.Common"
             android:id="@+id/unit_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{item.measure}"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/ingredient_tv"
             tools:text="unit" />
 
         <TextView
+            style="@style/TextView.Common"
             android:id="@+id/qty_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{String.valueOf(item.quantity)}"
-            app:layout_constraintStart_toEndOf="@+id/unit_tv"
-            app:layout_constraintTop_toBottomOf="@+id/ingredient_tv"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/unit_tv"
             tools:text="12.0" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

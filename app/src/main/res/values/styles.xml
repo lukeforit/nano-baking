@@ -34,9 +34,21 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">italic</item>
         <item name="android:fontFamily">sans-serif</item>
-        <item name="android:text">@string/freepik_text</item>
+        <item name="android:text">@string/license_freepik</item>
         <item name="android:layout_marginBottom">@dimen/size_small</item>
         <item name="android:layout_marginRight">@dimen/size_small</item>
+    </style>
+    <style name="TextView.Label">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:padding">@dimen/size_small</item>
+    </style>
+    <style name="TextView.Common">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:padding">@dimen/size_small</item>
     </style>
 
 </resources>

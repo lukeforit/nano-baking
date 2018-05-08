@@ -5,6 +5,7 @@
     <dimen name="item_width">250dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 
+    <dimen name="size_none">0dp</dimen>
     <dimen name="size_small">8dp</dimen>
     <dimen name="size_medium">16dp</dimen>
     <dimen name="size_large">48dp</dimen>
