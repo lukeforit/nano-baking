@@ -36,7 +36,7 @@
             <TextView
                 android:id="@+id/step_description_tv"
                 style="?android:attr/textAppearanceLarge"
-                android:padding="@dimen/size_medium"
+                android:layout_margin="@dimen/size_medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"

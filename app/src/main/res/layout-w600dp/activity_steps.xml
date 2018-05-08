@@ -27,7 +27,8 @@
             android:paddingEnd="@dimen/size_small"
             android:paddingTop="@dimen/size_small"
             app:adapter="@{vm.adapter}"
-            app:layoutManager="@{vm.layoutManager}" />
+            app:layoutManager="@{vm.layoutManager}"
+            tools:listitem="@layout/item_step"/>
 
         <FrameLayout
             android:id="@+id/step_detail_content"

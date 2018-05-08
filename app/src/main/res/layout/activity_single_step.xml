@@ -25,9 +25,9 @@
             android:id="@+id/prev_bt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_keyboard_arrow_left"
+            android:drawableStart="@drawable/ic_keyboard_arrow_left"
             android:onClick="@{vm::onPreviousClick}"
-            android:text="Previous"
+            android:text="@string/button_previous"
             android:enabled="@{vm.previousButtonEnabled}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -36,9 +36,9 @@
             android:id="@+id/next_bt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_keyboard_arrow_right"
+            android:drawableEnd="@drawable/ic_keyboard_arrow_right"
             android:onClick="@{vm::onNextClick}"
-            android:text="Next"
+            android:text="@string/button_next"
             android:enabled="@{vm.nextButtonEnabled}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
