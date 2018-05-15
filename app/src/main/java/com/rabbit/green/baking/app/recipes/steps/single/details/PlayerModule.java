@@ -14,6 +14,9 @@ import com.rabbit.green.baking.app.R;
 import dagger.Module;
 import dagger.Provides;
 
+//TODO apply scope
+//TODO optional - add ExoPlayer.EventListener and MediaSession
+//TODO MediaStyle notification - just to present the idea
 @Module
 public class PlayerModule {
     @Provides
