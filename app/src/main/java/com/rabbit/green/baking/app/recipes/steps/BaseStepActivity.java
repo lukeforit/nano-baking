@@ -37,7 +37,7 @@ public class BaseStepActivity extends BaseActivity {
 
     public void updateStepDetailFragment(Step step) {
         if (fragment instanceof StepDetailsFragment) {
-            ((StepDetailsFragment) fragment).setData(step);
+            ((StepDetailsFragment) fragment).resetData(step);
         }
     }
 }

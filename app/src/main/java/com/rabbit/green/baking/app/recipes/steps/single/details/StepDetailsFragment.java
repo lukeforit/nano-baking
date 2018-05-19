@@ -86,4 +86,9 @@ public class StepDetailsFragment extends BaseFragment {
     public void setData(Step step) {
         viewModel.setData(step);
     }
+
+    public void resetData(Step step) {
+        viewModel.setData(step);
+        viewModel.setSeekPosition(0);
+    }
 }
