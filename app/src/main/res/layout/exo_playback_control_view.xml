@@ -1,4 +1,3 @@
-<!-- TODO customize playback controls by modifying original playback source -->
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2016 The Android Open Source Project
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,9 +13,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="bottom"
     android:layoutDirection="ltr"
-    android:background="#CC000000"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical">
 
     <LinearLayout
@@ -32,11 +32,11 @@
         <ImageButton android:id="@id/exo_rew"
             style="@style/ExoMediaButton.Rewind"/>
 
-        <ImageButton android:id="@id/exo_shuffle"
-            style="@style/ExoMediaButton.Shuffle"/>
+        <!--<ImageButton android:id="@id/exo_shuffle"-->
+            <!--style="@style/ExoMediaButton.Shuffle"/>-->
 
-        <ImageButton android:id="@id/exo_repeat_toggle"
-            style="@style/ExoMediaButton"/>
+        <!--<ImageButton android:id="@id/exo_repeat_toggle"-->
+            <!--style="@style/ExoMediaButton"/>-->
 
         <ImageButton android:id="@id/exo_play"
             style="@style/ExoMediaButton.Play"/>
@@ -73,7 +73,8 @@
             android:id="@id/exo_progress"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="26dp"/>
+            android:layout_height="26dp"
+            app:played_color="@color/green"/>
 
         <TextView android:id="@id/exo_duration"
             android:layout_width="wrap_content"
