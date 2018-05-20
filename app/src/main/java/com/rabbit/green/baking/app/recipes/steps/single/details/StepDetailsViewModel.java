@@ -99,7 +99,8 @@ public class StepDetailsViewModel extends BaseViewModel {
                             exoPlayer.getCurrentPosition(), 1f);
                 }
                 mediaSession.setPlaybackState(playbackStateBuilder.build());
-                showNotification(playbackStateBuilder.build());
+                //TODO it causes RemoteServiceException Bad notification posted from package
+//                showNotification(playbackStateBuilder.build());
             }
         });
     }
@@ -187,6 +188,7 @@ public class StepDetailsViewModel extends BaseViewModel {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            //TODO reference media session in non static context
 //            MediaButtonReceiver.handleIntent(mediaSession, intent);
         }
     }
