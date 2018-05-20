@@ -10,4 +10,9 @@
     <string name="label_ingredient">Ingredient:</string>
     <string name="label_unit">Unit:</string>
     <string name="label_Quantity">Quantity:</string>
+
+    <string name="player_play">Play</string>
+    <string name="player_pause">Pause</string>
+
+    <string name="notification_channel" translatable="false">notification_channel_recipe_video</string>
 </resources>

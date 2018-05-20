@@ -17,7 +17,6 @@ import dagger.Module;
 import dagger.Provides;
 
 //TODO apply scope
-//TODO MediaStyle notification - just to present the idea
 @Module
 public class PlayerModule {
 

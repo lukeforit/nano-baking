@@ -1,7 +1,12 @@
 package com.rabbit.green.baking.app.recipes.steps.single.details;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.media.session.MediaButtonReceiver;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.text.TextUtils;
@@ -12,10 +17,13 @@ import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.upstream.DataSource;
+import com.rabbit.green.baking.app.R;
 import com.rabbit.green.baking.app.data.model.Step;
 import com.rabbit.green.baking.app.recipes.BaseViewModel;
 
 import javax.inject.Inject;
+
+import static android.content.Context.NOTIFICATION_SERVICE;
 
 public class StepDetailsViewModel extends BaseViewModel {
 
@@ -37,6 +45,8 @@ public class StepDetailsViewModel extends BaseViewModel {
     @SuppressWarnings("WeakerAccess")
     @Inject
     PlaybackStateCompat.Builder playbackStateBuilder;
+
+    private NotificationManager notificationManager;
 
     private Step step;
     private long seekPosition;
@@ -88,8 +98,47 @@ public class StepDetailsViewModel extends BaseViewModel {
                             exoPlayer.getCurrentPosition(), 1f);
                 }
                 mediaSession.setPlaybackState(playbackStateBuilder.build());
+                showNotification(playbackStateBuilder.build());
             }
         });
+    }
+
+    private void showNotification(PlaybackStateCompat state) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(
+                context, context.getString(R.string.notification_channel));
+
+        int notificationIcon;
+        String notificationString;
+        if(state.getState() == PlaybackStateCompat.STATE_PLAYING){
+            notificationIcon = R.drawable.exo_controls_pause;
+            notificationString = context.getString(R.string.player_pause);
+        } else {
+            notificationIcon = R.drawable.exo_controls_play;
+            notificationString = context.getString(R.string.player_play);
+        }
+
+
+        NotificationCompat.Action playPauseAction = new NotificationCompat.Action(
+                notificationIcon, notificationString,
+                MediaButtonReceiver.buildMediaButtonPendingIntent(context,
+                        PlaybackStateCompat.ACTION_PLAY_PAUSE));
+
+        PendingIntent contentPendingIntent = PendingIntent.getActivity(context, 0,
+                new Intent(context, context.getClass()), 0);
+
+        builder.setContentTitle(step.title())
+                .setContentText(step.title())
+                .setContentIntent(contentPendingIntent)
+                .setSmallIcon(android.R.drawable.ic_media_play)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .addAction(playPauseAction)
+                .setStyle(new android.support.v4.media.app.NotificationCompat.MediaStyle()
+                        .setMediaSession(mediaSession.getSessionToken())
+                        .setShowActionsInCompactView(0,1));
+
+
+        notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(0, builder.build());
     }
 
     public long getPlayerCurrentPosition() {
@@ -101,6 +150,7 @@ public class StepDetailsViewModel extends BaseViewModel {
     }
 
     public void releasePlayer() {
+        notificationManager.cancelAll();
         mediaSession.setActive(false);
         exoPlayer.release();
     }
