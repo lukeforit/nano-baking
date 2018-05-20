@@ -14,10 +14,12 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".recipes.steps.StepsActivity"
+            android:launchMode="singleTop"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".recipes.steps.single.SingleStepActivity"
+            android:launchMode="singleTop"
             android:label="@string/title_item_detail"
             android:parentActivityName=".recipes.steps.StepsActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -33,6 +35,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".recipes.steps.single.details.StepDetailsViewModel$VideoMediaReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.rabbit.green.baking.app.recipes.steps.single.details;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -177,5 +178,16 @@ public class StepDetailsViewModel extends BaseViewModel {
 
     public ExoPlayer getExoPlayer() {
         return exoPlayer;
+    }
+
+    public static class VideoMediaReceiver extends BroadcastReceiver {
+
+        public VideoMediaReceiver() {
+        }
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+//            MediaButtonReceiver.handleIntent(mediaSession, intent);
+        }
     }
 }
