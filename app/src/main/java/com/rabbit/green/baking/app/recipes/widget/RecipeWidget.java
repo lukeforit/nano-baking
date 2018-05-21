@@ -1,9 +1,11 @@
-package com.rabbit.green.baking.app;
+package com.rabbit.green.baking.app.recipes.widget;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.widget.RemoteViews;
+
+import com.rabbit.green.baking.app.R;
 
 /**
  * Implementation of App Widget functionality.
