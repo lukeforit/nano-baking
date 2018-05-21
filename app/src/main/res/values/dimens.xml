@@ -11,4 +11,6 @@
     <dimen name="text_size_tiny">10sp</dimen>
     <dimen name="text_size_medium">16sp</dimen>
     <dimen name="text_size_large">24sp</dimen>
+
+    <dimen name="widget_margin">8dp</dimen>
 </resources>

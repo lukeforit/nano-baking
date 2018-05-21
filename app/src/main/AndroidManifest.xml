@@ -14,13 +14,13 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".recipes.steps.StepsActivity"
-            android:launchMode="singleTop"
             android:label="@string/app_name"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".recipes.steps.single.SingleStepActivity"
-            android:launchMode="singleTop"
             android:label="@string/title_item_detail"
+            android:launchMode="singleTop"
             android:parentActivityName=".recipes.steps.StepsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -32,13 +32,24 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <receiver android:name=".recipes.steps.single.details.StepDetailsViewModel$VideoMediaReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
+        </receiver>
+        <receiver android:name=".RecipeWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/recipe_widget_info" />
         </receiver>
     </application>
 
