@@ -89,8 +89,10 @@ public class RecipesContentProvider extends ContentProvider {
         switch (URI_MATCHER.match(uri)) {
             case MATCH_CODE_RECIPE_WITH_ID:
                 values.put(RecipesContract.IngredientEntry.COLUMN_RECIPE_ID, uri.getPathSegments().get(1));
+                id = db.insertOrThrow(RecipesContract.IngredientEntry.TABLE_NAME, null, values);
+                break;
             case MATCH_CODE_RECIPES:
-                id = db.insert(RecipesContract.RecipeEntry.TABLE_NAME, null, values);
+                id = db.insertOrThrow(RecipesContract.RecipeEntry.TABLE_NAME, null, values);
                 break;
             default:
                 throw new UnsupportedOperationException("Unsupported URI " + uri);

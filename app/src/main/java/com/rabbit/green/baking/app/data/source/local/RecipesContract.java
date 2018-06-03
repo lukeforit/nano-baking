@@ -15,7 +15,7 @@ public class RecipesContract {
             ");";
 
     static final String SQL_CREATE_INGREDIENT_TABLE = "CREATE TABLE " + IngredientEntry.TABLE_NAME + "(" +
-            BaseColumns._ID + " INTEGER PRIMARY KEY, " +
+            BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             IngredientEntry.COLUMN_NAME + " TEXT NOT NULL, " +
             IngredientEntry.COLUMN_MEASURE + " TEXT NOT NULL, " +
             IngredientEntry.COLUMN_QTY + " REAL NOT NULL, " +
