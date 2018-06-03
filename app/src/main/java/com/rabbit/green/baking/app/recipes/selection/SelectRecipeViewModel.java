@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import com.rabbit.green.baking.app.R;
 import com.rabbit.green.baking.app.data.model.Recipe;
 import com.rabbit.green.baking.app.data.source.IDataSource;
+import com.rabbit.green.baking.app.data.source.local.RecipesLocalDataStore;
 import com.rabbit.green.baking.app.recipes.selection.adapter.RecipeAdapter;
 
 import java.util.List;
@@ -34,6 +35,9 @@ public class SelectRecipeViewModel {
     RecipeAdapter adapter;
 
     @Inject
+    RecipesLocalDataStore localDataStore;
+
+    @Inject
     public SelectRecipeViewModel() {
     }
 
@@ -53,6 +57,7 @@ public class SelectRecipeViewModel {
                     @Override
                     public void onSuccess(List<Recipe> recipes) {
                         adapter.setData(recipes);
+                        cacheRecipes(recipes);
                     }
 
                     @Override
@@ -60,6 +65,15 @@ public class SelectRecipeViewModel {
                         e.printStackTrace();
                     }
                 });
+    }
+
+    private void cacheRecipes(List<Recipe> recipes) {
+        // dummy all or nothing
+        if (localDataStore.getRecipes().isEmpty()) {
+            for (Recipe r : recipes) {
+                localDataStore.saveRecipeIngredients(r);
+            }
+        }
     }
 
     public RecyclerView.LayoutManager getLayoutManager() {
