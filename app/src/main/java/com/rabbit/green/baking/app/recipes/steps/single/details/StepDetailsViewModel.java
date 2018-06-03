@@ -152,7 +152,9 @@ public class StepDetailsViewModel extends BaseViewModel {
     }
 
     public void releasePlayer() {
-        notificationManager.cancelAll();
+        if (notificationManager != null) {
+            notificationManager.cancelAll();
+        }
         mediaSession.setActive(false);
         exoPlayer.release();
     }
