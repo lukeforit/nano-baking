@@ -36,6 +36,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <provider
+            android:authorities="com.rabbit.green.baking"
+            android:name=".data.source.local.RecipesContentProvider"
+            android:exported="false"/>
 
         <receiver android:name=".recipes.steps.single.details.StepDetailsViewModel$VideoMediaReceiver">
             <intent-filter>

@@ -19,8 +19,16 @@ public class RecipesContract {
             IngredientEntry.COLUMN_NAME + " TEXT NOT NULL, " +
             IngredientEntry.COLUMN_MEASURE + " TEXT NOT NULL, " +
             IngredientEntry.COLUMN_QTY + " REAL NOT NULL, " +
-            IngredientEntry.COLUMN_RECIPE_ID + " TEXT NOT NULL " +
+            IngredientEntry.COLUMN_RECIPE_ID + " INTEGER NOT NULL " +
             ");";
+    static final String SQL_QUERY_INGREDIENTS_BY_RECIPE_ID =
+            "SELECT i." + IngredientEntry.COLUMN_NAME +
+                    ", i." +IngredientEntry.COLUMN_MEASURE +
+                    ", i." + IngredientEntry.COLUMN_QTY +
+                    " FROM " + RecipeEntry.TABLE_NAME +
+                    " r INNER JOIN " + IngredientEntry.TABLE_NAME +
+                    " i ON r." + BaseColumns._ID + " = i." + IngredientEntry.COLUMN_RECIPE_ID +
+                    " WHERE r." + BaseColumns._ID + "=?";
 
     static final Uri CONTENT_URI = BASE_CONTENT_URI
             .buildUpon()
