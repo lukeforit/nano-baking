@@ -1,71 +1,29 @@
 package com.rabbit.green.baking.app.recipes.widget;
 
-import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
+import com.rabbit.green.baking.app.BR;
 import com.rabbit.green.baking.app.R;
+import com.rabbit.green.baking.app.recipes.BaseActivity;
 
-public class RecipeWidgetConfigureActivity extends Activity {
+import javax.inject.Inject;
+
+public class RecipeWidgetConfigureActivity extends BaseActivity {
 
     private static final String PREFS_NAME = "com.rabbit.green.baking.app.recipes.widget.RecipeWidget";
     private static final String PREF_PREFIX_KEY = "appwidget_";
+
     int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
-    EditText mAppWidgetText;
-    View.OnClickListener mOnClickListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            final Context context = RecipeWidgetConfigureActivity.this;
 
-            // When the button is clicked, store the string locally
-            String widgetText = mAppWidgetText.getText().toString();
-            saveTitlePref(context, mAppWidgetId, widgetText);
-
-            // It is the responsibility of the configuration activity to update the app widget
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            RecipeWidget.updateAppWidget(context, appWidgetManager, mAppWidgetId);
-
-            // Make sure we pass back the original appWidgetId
-            Intent resultValue = new Intent();
-            resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
-            setResult(RESULT_OK, resultValue);
-            finish();
-        }
-    };
-
-    public RecipeWidgetConfigureActivity() {
-        super();
-    }
-
-    // Write the prefix to the SharedPreferences object for this widget
-    static void saveTitlePref(Context context, int appWidgetId, String text) {
-        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
-        prefs.putString(PREF_PREFIX_KEY + appWidgetId, text);
-        prefs.apply();
-    }
-
-    // Read the prefix from the SharedPreferences object for this widget.
-    // If there is no preference saved, get the default from a resource
-    static String loadTitlePref(Context context, int appWidgetId) {
-        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
-        String titleValue = prefs.getString(PREF_PREFIX_KEY + appWidgetId, null);
-        if (titleValue != null) {
-            return titleValue;
-        } else {
-            return context.getString(R.string.appwidget_text);
-        }
-    }
-
-    static void deleteTitlePref(Context context, int appWidgetId) {
-        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
-        prefs.remove(PREF_PREFIX_KEY + appWidgetId);
-        prefs.apply();
-    }
+    @Inject
+    RecipeConfigureViewModel viewModel;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -75,11 +33,14 @@ public class RecipeWidgetConfigureActivity extends Activity {
         // out of the widget placement if the user presses the back button.
         setResult(RESULT_CANCELED);
 
-        setContentView(R.layout.recipe_widget_configure);
-        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        ViewDataBinding binding =
+                DataBindingUtil.setContentView(this, R.layout.recipe_widget_configure);
+        binding.setVariable(BR.vm, viewModel);
+        binding.executePendingBindings();
 
-        mAppWidgetText = (EditText) findViewById(R.id.appwidget_text);
-        findViewById(R.id.add_button).setOnClickListener(mOnClickListener);
+        viewModel.setup();
+
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
         // Find the widget id from the intent.
         Intent intent = getIntent();
@@ -94,8 +55,40 @@ public class RecipeWidgetConfigureActivity extends Activity {
             finish();
             return;
         }
+    }
 
-        mAppWidgetText.setText(loadTitlePref(RecipeWidgetConfigureActivity.this, mAppWidgetId));
+    void updateWidget(int id) {
+        saveRecipeIdPref(mAppWidgetId, id);
+
+        // It is the responsibility of the configuration activity to update the app widget
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
+        RecipeWidget.updateAppWidget(this, appWidgetManager, mAppWidgetId);
+
+        // Make sure we pass back the original appWidgetId
+        Intent resultValue = new Intent();
+        resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
+        setResult(RESULT_OK, resultValue);
+        finish();
+    }
+
+    // Write the prefix to the SharedPreferences object for this widget
+    void saveRecipeIdPref(int appWidgetId, int id) {
+        SharedPreferences.Editor prefs = this.getSharedPreferences(PREFS_NAME, 0).edit();
+        prefs.putInt(PREF_PREFIX_KEY + appWidgetId, id);
+        prefs.apply();
+    }
+
+    // Read the prefix from the SharedPreferences object for this widget.
+    // If there is no preference saved, get the default from a resource
+    static int loadRecipeIdPref(Context context, int appWidgetId) {
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
+        return prefs.getInt(PREF_PREFIX_KEY + appWidgetId, 0);
+    }
+
+    static void deleteTitlePref(Context context, int appWidgetId) {
+        SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
+        prefs.remove(PREF_PREFIX_KEY + appWidgetId);
+        prefs.apply();
     }
 }
 

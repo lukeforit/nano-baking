@@ -15,11 +15,14 @@ public class RecipeWidget extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
+//        RecipeIngredientsIntentService.startActionFetchIngredients(context,
+//                RecipeWidgetConfigureActivity.loadRecipeIdPref(context, appWidgetId));
+
         CharSequence widgetText = context.getString(R.string.appwidget_text);
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.recipe_widget);
         views.setTextViewText(R.id.appwidget_text, widgetText);
-//        views.setOnClickPendingIntent();
+
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);

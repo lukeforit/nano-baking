@@ -3,6 +3,7 @@ package com.rabbit.green.baking.app.di;
 import com.rabbit.green.baking.app.recipes.selection.SelectRecipeActivity;
 import com.rabbit.green.baking.app.recipes.steps.StepsActivity;
 import com.rabbit.green.baking.app.recipes.steps.single.SingleStepActivity;
+import com.rabbit.green.baking.app.recipes.widget.RecipeWidgetConfigureActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -18,4 +19,7 @@ public abstract class ActivityContributorModule {
 
     @ContributesAndroidInjector
     abstract SingleStepActivity contributeSingleStepActivity();
+
+    @ContributesAndroidInjector
+    abstract RecipeWidgetConfigureActivity contributeRecipeWidgetConfigureActivity();
 }

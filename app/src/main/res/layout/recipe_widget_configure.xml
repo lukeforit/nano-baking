@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <data>
+
+        <variable
+            name="vm"
+            type="com.rabbit.green.baking.app.recipes.widget.RecipeConfigureViewModel" />
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/configure" />
+        android:layout_height="match_parent"
+        tools:context=".recipes.widget.RecipeWidgetConfigureActivity">
 
-    <EditText
-        android:id="@+id/appwidget_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text" />
-
-    <Button
-        android:id="@+id/add_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/add_widget" />
-
-</LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recipes_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:adapter="@{vm.adapter}"
+            app:layoutManager="@{vm.layoutManager}"
+            tools:listitem="@layout/item_recipe_configure" />
+    </FrameLayout>
+</layout>
