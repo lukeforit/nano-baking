@@ -58,6 +58,7 @@ public class RecipeIngredientsIntentService extends IntentService {
      * parameters.
      */
     private void handleActionFetchIngredients(int id) {
+        //TODO query by all IDs
         RecipesLocalDataStore dataStore = new RecipesLocalDataStore(getContentResolver());
         List<Ingredient> list = dataStore.getIngredients(id);
 

@@ -40,7 +40,7 @@ public class RecipeConfigureViewModel extends BaseViewModel implements RecipeCon
     }
 
     @Override
-    public void onRecipeClick(int id) {
-        activity.updateWidget(id);
+    public void onRecipeClick(int id, String name) {
+        activity.updateWidget(id, name, localDataStore.getIngredients(id));
     }
 }

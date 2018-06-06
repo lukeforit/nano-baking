@@ -16,7 +16,8 @@ public class RecipeConfigureAdapter extends BaseAdapter<Recipe> {
 
     @Override
     public void onViewHolderClick(int position) {
-        callback.onRecipeClick(data.get(position).getId());
+        callback.onRecipeClick(data.get(position).getId(),
+                data.get(position).getName());
     }
 
     @Override
@@ -29,6 +30,6 @@ public class RecipeConfigureAdapter extends BaseAdapter<Recipe> {
     }
 
     public interface RecipeCallback {
-        void onRecipeClick(int id);
+        void onRecipeClick(int id, String name);
     }
 }
