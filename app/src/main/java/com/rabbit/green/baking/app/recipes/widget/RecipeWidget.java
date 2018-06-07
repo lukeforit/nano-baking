@@ -32,12 +32,6 @@ public class RecipeWidget extends AppWidgetProvider {
                 Parcels.wrap(ingredients));
         intent.putExtra(ListIngredientsRemoteViewsFactory.EXTRAS_WIDGET_INGREDIENTS, bundle);
         views.setRemoteAdapter(R.id.ingredients_lv, intent);
-        //TODO fix dummy way
-        StringBuilder builder = new StringBuilder();
-        for (Ingredient ingredient : ingredients) {
-            builder.append(ingredient.getIngredient()).append("\n");
-        }
-        views.setTextViewText(R.id.appwidget_ingredients_tv, builder.toString());
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
