@@ -3,10 +3,15 @@ package com.rabbit.green.baking.app.recipes.widget;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.rabbit.green.baking.app.R;
 import com.rabbit.green.baking.app.data.model.Ingredient;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -21,7 +26,12 @@ public class RecipeWidget extends AppWidgetProvider {
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.recipe_widget);
         views.setTextViewText(R.id.appwidget_recipe_name_tv, name);
-
+        Intent intent = new Intent(context, IngredientsRemoteViewsService.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(ListIngredientsRemoteViewsFactory.EXTRAS_WIDGET_INGREDIENTS,
+                Parcels.wrap(ingredients));
+        intent.putExtra(ListIngredientsRemoteViewsFactory.EXTRAS_WIDGET_INGREDIENTS, bundle);
+        views.setRemoteAdapter(R.id.ingredients_lv, intent);
         //TODO fix dummy way
         StringBuilder builder = new StringBuilder();
         for (Ingredient ingredient : ingredients) {

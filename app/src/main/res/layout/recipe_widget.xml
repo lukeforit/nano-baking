@@ -15,10 +15,12 @@
         android:textColor="#ffffff"
         android:textSize="24sp"
         android:textStyle="bold|italic" />
+
     <TextView
         android:id="@+id/appwidget_ingredients_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/appwidget_recipe_name_tv"
         android:layout_centerHorizontal="true"
         android:layout_margin="8dp"
         android:contentDescription="@string/appwidget_text"
@@ -26,6 +28,15 @@
         android:textColor="#ffffff"
         android:textSize="24sp"
         android:textStyle="bold|italic"
-        android:layout_below="@id/appwidget_recipe_name_tv"/>
+        android:visibility="invisible" />
+
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ingredients_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appwidget_recipe_name_tv"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="3dp"
+        android:background="@color/colorPrimary" />
 
 </RelativeLayout>
