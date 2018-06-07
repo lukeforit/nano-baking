@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.Context;
+import android.util.Pair;
 
 import com.rabbit.green.baking.app.data.model.Ingredient;
 import com.rabbit.green.baking.app.data.source.local.RecipesLocalDataStore;
@@ -22,7 +23,7 @@ public class RecipeIngredientsIntentService extends IntentService {
     private static final String ACTION_FETCH_INGREDIENTS =
             RecipeIngredientsIntentService.class.getPackage() + ".action.ACTION_FETCH_INGREDIENTS";
 
-    private static final String EXTRA_RECIPE_ID =
+    private static final String EXTRA_APP_WIDGET_IDS =
             RecipeIngredientsIntentService.class.getPackage() + ".extra.RECIPE_ID";
 
     public RecipeIngredientsIntentService() {
@@ -35,10 +36,10 @@ public class RecipeIngredientsIntentService extends IntentService {
      *
      * @see IntentService
      */
-    public static void startActionFetchIngredients(Context context, int recipeId) {
+    public static void startActionFetchIngredients(Context context, int[] appWidgetIds) {
         Intent intent = new Intent(context, RecipeIngredientsIntentService.class);
         intent.setAction(ACTION_FETCH_INGREDIENTS);
-        intent.putExtra(EXTRA_RECIPE_ID, recipeId);
+        intent.putExtra(EXTRA_APP_WIDGET_IDS, appWidgetIds);
         context.startService(intent);
     }
 
@@ -47,8 +48,8 @@ public class RecipeIngredientsIntentService extends IntentService {
         if (intent != null) {
             final String action = intent.getAction();
             if (ACTION_FETCH_INGREDIENTS.equals(action)) {
-                final int id = intent.getIntExtra(EXTRA_RECIPE_ID, 0);
-                handleActionFetchIngredients(id);
+                final int[] appWidgetIds = intent.getIntArrayExtra(EXTRA_APP_WIDGET_IDS);
+                handleActionFetchIngredients(appWidgetIds);
             }
         }
     }
@@ -57,14 +58,15 @@ public class RecipeIngredientsIntentService extends IntentService {
      * Handle action Foo in the provided background thread with the provided
      * parameters.
      */
-    private void handleActionFetchIngredients(int id) {
-        //TODO query by all IDs
+    private void handleActionFetchIngredients(int[] appWidgetIds) {
         RecipesLocalDataStore dataStore = new RecipesLocalDataStore(getContentResolver());
-        List<Ingredient> list = dataStore.getIngredients(id);
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, RecipeWidget.class));
-        RecipeWidget.updateAllWidgets(this, appWidgetManager, appWidgetIds);
+        for (int appWidgetId: appWidgetIds) {
+            Pair<Integer, String> pair =  RecipeWidgetConfigureActivity.loadPrefPair(this, appWidgetId);
+            RecipeWidget.updateAppWidget(this, appWidgetManager, appWidgetId,
+                    pair.second, dataStore.getIngredients(pair.first));
+        }
     }
 
 }

@@ -33,18 +33,10 @@ public class RecipeWidget extends AppWidgetProvider {
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
-    static void updateAllWidgets(Context context, AppWidgetManager appWidgetManager,
-                                 int[] appWidgetIds) {
-        for (int appWidgetId : appWidgetIds) {
-            //TODO update all widgets
-//            updateAppWidget(context, appWidgetManager, appWidgetId);
-        }
-    }
-
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         //TODO retrieve IDs and pass to service
-//        RecipeIngredientsIntentService.startActionFetchIngredients(context, 1);
+        RecipeIngredientsIntentService.startActionFetchIngredients(context, appWidgetIds);
     }
 
     @Override
