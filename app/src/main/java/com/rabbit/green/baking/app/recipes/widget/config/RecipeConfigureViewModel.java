@@ -1,4 +1,4 @@
-package com.rabbit.green.baking.app.recipes.widget;
+package com.rabbit.green.baking.app.recipes.widget.config;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;

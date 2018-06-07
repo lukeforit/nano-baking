@@ -2,15 +2,12 @@ package com.rabbit.green.baking.app.recipes.widget;
 
 import android.app.IntentService;
 import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
-import android.content.Intent;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Pair;
 
-import com.rabbit.green.baking.app.data.model.Ingredient;
 import com.rabbit.green.baking.app.data.source.local.RecipesLocalDataStore;
-
-import java.util.List;
+import com.rabbit.green.baking.app.recipes.widget.config.RecipeWidgetConfigureActivity;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in

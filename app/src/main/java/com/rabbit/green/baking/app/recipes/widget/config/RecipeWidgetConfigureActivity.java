@@ -1,4 +1,4 @@
-package com.rabbit.green.baking.app.recipes.widget;
+package com.rabbit.green.baking.app.recipes.widget.config;
 
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
@@ -14,6 +14,7 @@ import com.rabbit.green.baking.app.BR;
 import com.rabbit.green.baking.app.R;
 import com.rabbit.green.baking.app.data.model.Ingredient;
 import com.rabbit.green.baking.app.recipes.BaseActivity;
+import com.rabbit.green.baking.app.recipes.widget.RecipeWidget;
 
 import java.util.List;
 
@@ -83,7 +84,7 @@ public class RecipeWidgetConfigureActivity extends BaseActivity {
         prefs.apply();
     }
 
-    static Pair<Integer, String> loadPrefPair(Context context, int appWidgetId) {
+    public static Pair<Integer, String> loadPrefPair(Context context, int appWidgetId) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
         return new Pair<>(prefs.getInt(PREF_PREFIX_RECIPE_ID_KEY + appWidgetId, 0),
                 prefs.getString(PREF_PREFIX_RECIPE_NAME_KEY + appWidgetId, null));

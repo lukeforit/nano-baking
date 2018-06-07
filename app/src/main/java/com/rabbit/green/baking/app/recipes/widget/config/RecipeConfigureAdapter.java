@@ -1,4 +1,4 @@
-package com.rabbit.green.baking.app.recipes.widget;
+package com.rabbit.green.baking.app.recipes.widget.config;
 
 import com.rabbit.green.baking.app.R;
 import com.rabbit.green.baking.app.common.adapter.BaseAdapter;

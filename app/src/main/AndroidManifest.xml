@@ -62,7 +62,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".recipes.widget.RecipeWidgetConfigureActivity"
+            android:name=".recipes.widget.config.RecipeWidgetConfigureActivity"
             android:excludeFromRecents="true"
             android:theme="@style/Theme.AppCompat.Dialog">
             <intent-filter>
