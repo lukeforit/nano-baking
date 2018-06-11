@@ -6,16 +6,18 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
-@Module
+@Module(includes = HttpClientModule.class)
 public class NetworkModule {
 
     @Singleton
     @Provides
-    public Retrofit provideRetrofit() {
+    public Retrofit provideRetrofit(OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
+                .client(okHttpClient)
                 .baseUrl("https://d17h27t6h515a5.cloudfront.net")
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build();

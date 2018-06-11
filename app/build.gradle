@@ -17,6 +17,13 @@ android {
         }
     }
 
+    productFlavors {
+        dev {
+        }
+    }
+
+    flavorDimensions "default"
+
     dataBinding {
         enabled = true
     }
@@ -27,7 +34,7 @@ dependencies {
         retrofit = '2.3.0'
         moshi = '1.5.0'
         mockitoUnit = '2.13.0'
-        okHttpClient = '3.9.1'
+        okHttpClient = '3.10.0'
         jUnit = '4.12'
         supportLib = '27.1.1'
         rxJava = '2.1.6'
@@ -57,6 +64,8 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit"
 
+    implementation "com.squareup.okhttp3:okhttp:$okHttpClient"
+
     implementation "io.reactivex.rxjava2:rxjava:$rxJava"
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroid"
     implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rxRetrofitAdapter"
@@ -82,4 +91,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
 }
